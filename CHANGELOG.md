@@ -6,8 +6,13 @@ This project follows semantic versioning after public release.
 
 ## 0.3.2
 
-- Add focused SEO guide pages for GA4 Telegram reports, Telegram bot setup, GitHub Actions, Vercel Cron, and multi-site reporting.
-- Expand npm keywords for GA4, Telegram bot, cron, and website monitoring searches.
+- Add focused SEO guide pages for GA4 Telegram reports, Telegram bot setup, GitHub Actions, Vercel Cron, GA4 service account access, Node.js jobs, npm package setup, and multi-site reporting.
+- Expand npm keywords and package description for GA4 Telegram reports, Node.js cron jobs, Vercel, GitHub Actions, Netlify, Railway, and Express.
+- Document environment variables with required/optional status, multi-site naming patterns, and the difference between GA4 property IDs and measurement IDs.
+- Add Google Analytics Admin API fallback instructions for service account emails rejected by the GA4 UI.
+- Add `llms-full.txt` and expand answer-engine context for common GA4 Telegram reporting questions.
+- Add static site checks for broken internal links.
+- Reduce guide-page hero heading sizes for cleaner desktop and mobile reading.
 - Add launch copy for GitHub, Hacker News, Reddit, Product Hunt, and social posts.
 
 ## 0.3.1
