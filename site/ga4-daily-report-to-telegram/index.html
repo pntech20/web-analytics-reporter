@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>GA4 Daily Report to Telegram - Node.js Setup Guide</title>
+    <meta name="description" content="Send a GA4 daily report to Telegram with Node.js. Schedule users, sessions, countries, sources, pages, and events from Vercel or GitHub Actions.">
+    <meta name="robots" content="index,follow,max-image-preview:large">
+    <link rel="canonical" href="https://analyticsreporter.xyz/ga4-daily-report-to-telegram">
+    <link rel="icon" href="/assets/logo.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="/styles.css">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="GA4 Daily Report to Telegram">
+    <meta property="og:description" content="Schedule a daily GA4 website summary and send it to Telegram from Node.js.">
+    <meta property="og:url" content="https://analyticsreporter.xyz/ga4-daily-report-to-telegram">
+    <meta property="og:image" content="https://analyticsreporter.xyz/assets/og-image.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://analyticsreporter.xyz/"
+              },
+              {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "GA4 Daily Report to Telegram",
+                "item": "https://analyticsreporter.xyz/ga4-daily-report-to-telegram"
+              }
+            ]
+          },
+          {
+            "@type": "TechArticle",
+            "headline": "Send a GA4 daily report to Telegram",
+            "description": "A Node.js setup guide for sending daily GA4 users, sessions, pages, countries, sources, and events to Telegram."
+          },
+          {
+            "@type": "FAQPage",
+            "mainEntity": [
+              {
+                "@type": "Question",
+                "name": "How do I send a GA4 daily report to Telegram?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Create GA4 service account access, create a Telegram bot, configure Web Analytics Reporter with one site, and run runDailySummary from Vercel Cron, GitHub Actions, or another Node.js scheduler."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "What should a daily GA4 Telegram report include?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "A useful daily report includes users, sessions, page views, top countries, top traffic sources, top pages, and important custom events."
+                }
+              }
+            ]
+          }
+        ]
+      }
+    </script>
+  </head>
+  <body>
+    <header class="site-header">
+      <nav class="nav" aria-label="Main navigation">
+        <a class="brand" href="/">
+          <img src="/assets/logo.svg" alt="Web Analytics Reporter logo" width="38" height="38">
+          <span>Web Analytics Reporter</span>
+        </a>
+        <div class="nav-links">
+          <a href="/">Home</a>
+          <a href="/answers">Guides</a>
+          <a href="mailto:contact@analyticsreporter.xyz">Contact</a>
+          <a href="https://github.com/pntech20/web-analytics-reporter">GitHub</a>
+          <a class="nav-cta" href="https://www.npmjs.com/package/web-analytics-reporter">npm</a>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <section class="section hero">
+        <div>
+          <p class="eyebrow">Daily GA4 summary</p>
+          <h1>Send a GA4 daily report to Telegram.</h1>
+          <p class="lead">A daily GA4 Telegram report gives your team the traffic numbers that matter without opening the GA4 dashboard every morning.</p>
+          <p class="hero-copy">Use Web Analytics Reporter to fetch yesterday's completed GA4 data, format a readable summary, and send it to a direct chat, group, or channel.</p>
+        </div>
+        <figure class="hero-visual">
+          <img src="/assets/report-preview.svg" alt="Daily GA4 report message sent to Telegram" width="1200" height="760">
+        </figure>
+      </section>
+
+      <section class="section">
+        <div class="article-layout">
+          <article class="article-body">
+            <h2 id="answer">Answer first</h2>
+            <p>Install <code>web-analytics-reporter</code>, connect a GA4 service account, add a Telegram bot token and chat ID, then schedule <code>runDailySummary()</code> once per day.</p>
+            <p>This keeps GA4 as the source of truth while Telegram becomes the place where the summary arrives.</p>
+
+            <h2 id="metrics">Recommended metrics</h2>
+            <ul>
+              <li>Users, sessions, and page views.</li>
+              <li>Change versus the previous day.</li>
+              <li>Top countries and top traffic sources.</li>
+              <li>Top pages by views or users.</li>
+              <li>Custom events such as downloads, signups, support clicks, or checkout starts.</li>
+            </ul>
+
+            <h2 id="code">Minimal daily report job</h2>
+            <div class="code-card">
+              <header>
+                <span>daily-summary.js</span>
+                <span>Node.js</span>
+              </header>
+              <pre><code>const {
+  runDailySummary,
+  ga4Source,
+  telegramDestination
+} = require("web-analytics-reporter");
+
+runDailySummary({
+  source: ga4Source({
+    clientEmail: process.env.GOOGLE_CLIENT_EMAIL,
+    privateKey: process.env.GOOGLE_PRIVATE_KEY
+  }),
+  destination: telegramDestination({
+    botToken: process.env.TELEGRAM_BOT_TOKEN
+  }),
+  sites: [
+    {
+      id: "marketing",
+      name: "Marketing Site",
+      ga4PropertyId: process.env.GA4_PROPERTY_ID,
+      telegramChatId: process.env.TELEGRAM_CHAT_ID
+    }
+  ],
+  timeZone: "UTC"
+});</code></pre>
+            </div>
+
+            <h2 id="scheduler">Choose a scheduler</h2>
+            <p>Use Vercel Cron when your site is already on Vercel. Use GitHub Actions when you want a simple scheduled workflow without hosting a worker. Use Express, Railway, Netlify, or plain Node cron when the report should live beside an existing backend.</p>
+
+            <h2 id="related">Related setup paths</h2>
+            <div class="guide-list">
+              <a class="guide-link" href="/ga4-vercel-cron-report">
+                <span><strong>GA4 Vercel Cron report</strong><span>Add a protected serverless endpoint.</span></span>
+                <em>Read</em>
+              </a>
+              <a class="guide-link" href="/ga4-github-actions-report">
+                <span><strong>GA4 GitHub Actions report</strong><span>Run daily reports without a backend.</span></span>
+                <em>Read</em>
+              </a>
+            </div>
+          </article>
+
+          <aside class="toc" aria-label="Guide contents">
+            <strong>On this page</strong>
+            <a href="#answer">Answer first</a>
+            <a href="#metrics">Metrics</a>
+            <a href="#code">Code</a>
+            <a href="#scheduler">Scheduler</a>
+            <a href="#related">Related setup</a>
+          </aside>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <span>Web Analytics Reporter. MIT licensed.</span>
+        <div class="footer-links">
+          <a href="/answers">Answer guide</a>
+          <a href="mailto:contact@analyticsreporter.xyz">Contact</a>
+          <a href="https://github.com/pntech20/web-analytics-reporter">GitHub</a>
+          <a href="https://www.npmjs.com/package/web-analytics-reporter">npm</a>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

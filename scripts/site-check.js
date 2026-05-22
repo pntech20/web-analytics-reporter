@@ -33,6 +33,7 @@ function checkPage(filePath, sitemap) {
   const missingAlt = images.filter((match) => !/\salt=/.test(match[1]));
   const jsonLdBlocks = [...html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)];
   const expectedUrl = publicUrlFor(filePath);
+  const internalLinks = [...html.matchAll(/\shref="(\/[^"#?]*)/g)].map((match) => match[1]);
 
   if (title.length < 35 || title.length > 70) fail(`${filePath}: title should be 35-70 characters.`);
   if (description.length < 120 || description.length > 160) fail(`${filePath}: description should be 120-160 characters.`);
@@ -44,6 +45,13 @@ function checkPage(filePath, sitemap) {
 
   for (const block of jsonLdBlocks) {
     JSON.parse(block[1]);
+  }
+
+  for (const link of internalLinks) {
+    if (link === "/") continue;
+    const target = path.join(SITE_DIR, link, "index.html");
+    const asset = path.join(SITE_DIR, link);
+    if (!fs.existsSync(target) && !fs.existsSync(asset)) fail(`${filePath}: broken internal link ${link}.`);
   }
 
   console.log(`${path.relative(process.cwd(), filePath)} ok`);

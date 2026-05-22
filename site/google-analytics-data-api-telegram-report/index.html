@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Google Analytics Data API Telegram Report Guide</title>
+    <meta name="description" content="Use the Google Analytics Data API to send GA4 website summaries to Telegram from Node.js cron jobs, serverless functions, or GitHub Actions.">
+    <meta name="robots" content="index,follow,max-image-preview:large">
+    <link rel="canonical" href="https://analyticsreporter.xyz/google-analytics-data-api-telegram-report">
+    <link rel="icon" href="/assets/logo.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="/styles.css">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Google Analytics Data API Telegram Report">
+    <meta property="og:description" content="Use the GA4 Data API to send daily website reports to Telegram.">
+    <meta property="og:url" content="https://analyticsreporter.xyz/google-analytics-data-api-telegram-report">
+    <meta property="og:image" content="https://analyticsreporter.xyz/assets/og-image.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://analyticsreporter.xyz/"
+              },
+              {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Google Analytics Data API Telegram Report",
+                "item": "https://analyticsreporter.xyz/google-analytics-data-api-telegram-report"
+              }
+            ]
+          },
+          {
+            "@type": "TechArticle",
+            "headline": "Use the Google Analytics Data API for Telegram reports",
+            "description": "How a Node.js job reads GA4 report data and sends a daily website analytics summary to Telegram."
+          },
+          {
+            "@type": "FAQPage",
+            "mainEntity": [
+              {
+                "@type": "Question",
+                "name": "Does Web Analytics Reporter use the Google Analytics Data API?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Yes. It reads GA4 report data through the Google Analytics Data API and sends a formatted summary to Telegram."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Do I need OAuth for daily GA4 reports?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "For server-owned scheduled reports, a service account is usually simpler than OAuth. Grant it Viewer access to the GA4 property and store the key securely."
+                }
+              }
+            ]
+          }
+        ]
+      }
+    </script>
+  </head>
+  <body>
+    <header class="site-header">
+      <nav class="nav" aria-label="Main navigation">
+        <a class="brand" href="/">
+          <img src="/assets/logo.svg" alt="Web Analytics Reporter logo" width="38" height="38">
+          <span>Web Analytics Reporter</span>
+        </a>
+        <div class="nav-links">
+          <a href="/">Home</a>
+          <a href="/answers">Guides</a>
+          <a href="mailto:contact@analyticsreporter.xyz">Contact</a>
+          <a href="https://github.com/pntech20/web-analytics-reporter">GitHub</a>
+          <a class="nav-cta" href="https://www.npmjs.com/package/web-analytics-reporter">npm</a>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <section class="section hero">
+        <div>
+          <p class="eyebrow">GA4 Data API</p>
+          <h1>Send Google Analytics Data API reports to Telegram.</h1>
+          <p class="lead">Use the GA4 Data API as the source for a daily website analytics message your team can read in Telegram.</p>
+          <p class="hero-copy">Web Analytics Reporter wraps the common report query, date comparison, message formatting, and Telegram delivery in one small Node.js package.</p>
+        </div>
+        <figure class="hero-visual">
+          <img src="/assets/report-preview.svg" alt="Google Analytics Data API report delivered to Telegram" width="1200" height="760">
+        </figure>
+      </section>
+
+      <section class="section">
+        <div class="article-layout">
+          <article class="article-body">
+            <h2 id="how-it-works">How it works</h2>
+            <p>The scheduled job authenticates with Google, requests a GA4 report for yesterday, formats the result, and sends the message through the Telegram Bot API.</p>
+            <p>The package uses the same GA4 property ID you see in Google Analytics Admin. Each configured site can point to a different GA4 property.</p>
+
+            <h2 id="access">Recommended access model</h2>
+            <p>Use a Google Cloud service account for your own websites and internal reports. Add the service account to each GA4 property with Viewer access only.</p>
+            <p>Use OAuth later only if you are building a SaaS where customers connect their own Google Analytics accounts.</p>
+
+            <h2 id="query">Typical report sections</h2>
+            <ul>
+              <li>Daily totals for users, sessions, views, and events.</li>
+              <li>Previous-day percentage changes.</li>
+              <li>Countries and traffic sources.</li>
+              <li>Top pages and custom event counts.</li>
+              <li>A short note that GA4 data can lag, so the report uses yesterday's completed data.</li>
+            </ul>
+
+            <h2 id="setup">Setup checklist</h2>
+            <ol>
+              <li>Enable the Google Analytics Data API in Google Cloud.</li>
+              <li>Create a service account and JSON key.</li>
+              <li>Grant Viewer access in the target GA4 property.</li>
+              <li>Store <code>GOOGLE_CLIENT_EMAIL</code>, <code>GOOGLE_PRIVATE_KEY</code>, <code>GA4_PROPERTY_ID</code>, <code>TELEGRAM_BOT_TOKEN</code>, and <code>TELEGRAM_CHAT_ID</code> as secrets.</li>
+              <li>Run the report with <code>dryRun</code> before sending a real Telegram message.</li>
+            </ol>
+
+            <h2 id="related">Related guides</h2>
+            <div class="guide-list">
+              <a class="guide-link" href="/ga4-service-account-email-rejected">
+                <span><strong>Service account email rejected</strong><span>Fix GA4 access with the Admin API.</span></span>
+                <em>Read</em>
+              </a>
+              <a class="guide-link" href="/ga4-daily-report-to-telegram">
+                <span><strong>GA4 daily report to Telegram</strong><span>Build the end-to-end daily summary.</span></span>
+                <em>Read</em>
+              </a>
+            </div>
+          </article>
+
+          <aside class="toc" aria-label="Guide contents">
+            <strong>On this page</strong>
+            <a href="#how-it-works">How it works</a>
+            <a href="#access">Access model</a>
+            <a href="#query">Report sections</a>
+            <a href="#setup">Checklist</a>
+            <a href="#related">Related guides</a>
+          </aside>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <span>Web Analytics Reporter. MIT licensed.</span>
+        <div class="footer-links">
+          <a href="/answers">Answer guide</a>
+          <a href="mailto:contact@analyticsreporter.xyz">Contact</a>
+          <a href="https://github.com/pntech20/web-analytics-reporter">GitHub</a>
+          <a href="https://www.npmjs.com/package/web-analytics-reporter">npm</a>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

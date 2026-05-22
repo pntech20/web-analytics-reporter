@@ -31,7 +31,13 @@ Contact: [contact@analyticsreporter.xyz](mailto:contact@analyticsreporter.xyz)
 ## Guides
 
 - [GA4 Telegram report setup](https://analyticsreporter.xyz/ga4-telegram-report)
+- [GA4 daily report to Telegram](https://analyticsreporter.xyz/ga4-daily-report-to-telegram)
 - [Google Analytics Telegram bot](https://analyticsreporter.xyz/google-analytics-telegram-bot)
+- [Google Analytics Data API Telegram report](https://analyticsreporter.xyz/google-analytics-data-api-telegram-report)
+- [GA4 service account email rejected](https://analyticsreporter.xyz/ga4-service-account-email-rejected)
+- [Node.js GA4 report](https://analyticsreporter.xyz/nodejs-ga4-report)
+- [GA4 report npm package](https://analyticsreporter.xyz/ga4-report-npm-package)
+- [Telegram website analytics report](https://analyticsreporter.xyz/telegram-website-analytics-report)
 - [GA4 report from GitHub Actions](https://analyticsreporter.xyz/ga4-github-actions-report)
 - [GA4 report from Vercel Cron](https://analyticsreporter.xyz/ga4-vercel-cron-report)
 - [Multi-site GA4 reporting](https://analyticsreporter.xyz/ga4-multi-site-reporting)

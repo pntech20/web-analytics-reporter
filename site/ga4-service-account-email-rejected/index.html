@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>GA4 Service Account Email Rejected - Fix Viewer Access</title>
+    <meta name="description" content="Fix GA4 service account email rejected errors by checking the right property and using the Google Analytics Admin API accessBindings method.">
+    <meta name="robots" content="index,follow,max-image-preview:large">
+    <link rel="canonical" href="https://analyticsreporter.xyz/ga4-service-account-email-rejected">
+    <link rel="icon" href="/assets/logo.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="/styles.css">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="GA4 Service Account Email Rejected">
+    <meta property="og:description" content="Fix GA4 service account access when the Google Analytics UI rejects a service account email.">
+    <meta property="og:url" content="https://analyticsreporter.xyz/ga4-service-account-email-rejected">
+    <meta property="og:image" content="https://analyticsreporter.xyz/assets/og-image.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://analyticsreporter.xyz/"
+              },
+              {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "GA4 Service Account Email Rejected",
+                "item": "https://analyticsreporter.xyz/ga4-service-account-email-rejected"
+              }
+            ]
+          },
+          {
+            "@type": "TechArticle",
+            "headline": "Fix GA4 service account email rejected errors",
+            "description": "How to add a Google Cloud service account to a GA4 property when the Analytics UI rejects the service account email."
+          },
+          {
+            "@type": "FAQPage",
+            "mainEntity": [
+              {
+                "@type": "Question",
+                "name": "Why does GA4 reject my service account email?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Some GA4 account access screens only accept regular Google Account emails. If that happens, confirm you are on the correct property and add the service account with the Google Analytics Admin API properties.accessBindings.create method."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "What role should a reporting service account use?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Use Viewer access for daily reporting. Web Analytics Reporter only needs read access to the GA4 reporting data."
+                }
+              }
+            ]
+          }
+        ]
+      }
+    </script>
+  </head>
+  <body>
+    <header class="site-header">
+      <nav class="nav" aria-label="Main navigation">
+        <a class="brand" href="/">
+          <img src="/assets/logo.svg" alt="Web Analytics Reporter logo" width="38" height="38">
+          <span>Web Analytics Reporter</span>
+        </a>
+        <div class="nav-links">
+          <a href="/">Home</a>
+          <a href="/answers">Guides</a>
+          <a href="mailto:contact@analyticsreporter.xyz">Contact</a>
+          <a href="https://github.com/pntech20/web-analytics-reporter">GitHub</a>
+          <a class="nav-cta" href="https://www.npmjs.com/package/web-analytics-reporter">npm</a>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <section class="section hero">
+        <div>
+          <p class="eyebrow">GA4 access troubleshooting</p>
+          <h1>Fix GA4 service account email rejected errors.</h1>
+          <p class="lead">If Google Analytics says a service account email does not match a Google Account, the key is usually fine. Add the service account through the Google Analytics Admin API instead.</p>
+          <p class="hero-copy">This is the most common setup blocker when connecting Web Analytics Reporter to GA4 with a service account.</p>
+        </div>
+        <figure class="hero-visual">
+          <img src="/assets/report-preview.svg" alt="GA4 service account access troubleshooting for Telegram reports" width="1200" height="760">
+        </figure>
+      </section>
+
+      <section class="section">
+        <div class="article-layout">
+          <article class="article-body">
+            <h2 id="short-answer">Short answer</h2>
+            <p>Use the Google Analytics Admin API method <code>properties.accessBindings.create</code> to grant the service account <code>predefinedRoles/viewer</code> access to the correct GA4 property.</p>
+            <p>Do this after confirming the property ID belongs to the website you want to report on. Many access problems come from adding the service account to the wrong GA4 property.</p>
+
+            <h2 id="check-property">1. Confirm the correct GA4 property</h2>
+            <p>Open Google Analytics and switch to the exact account and property for the website. Copy the numeric property ID from the property details screen.</p>
+            <p class="inline-note">If you manage many websites, it is easy to be inside a different property such as a Chrome Web Store property, demo site, or older project.</p>
+
+            <h2 id="api-method">2. Add access with the Admin API</h2>
+            <p>Open the Google Analytics Admin API explorer for <code>properties.accessBindings.create</code>. Use a Google account that already has Administrator access to the target GA4 property.</p>
+            <div class="code-card">
+              <header>
+                <span>parent</span>
+                <span>GA4 Admin API</span>
+              </header>
+              <pre><code>properties/123456789</code></pre>
+            </div>
+            <div class="code-card">
+              <header>
+                <span>request body</span>
+                <span>JSON</span>
+              </header>
+              <pre><code>{
+  "user": "ga4-report-reader@your-project.iam.gserviceaccount.com",
+  "roles": [
+    "predefinedRoles/viewer"
+  ]
+}</code></pre>
+            </div>
+
+            <h2 id="verify">3. Verify with a dry run</h2>
+            <p>After the API returns success, run Web Analytics Reporter with <code>dryRun: true</code>. A dry run confirms the service account can read the property before sending a real Telegram message.</p>
+            <p>If the request still fails, check that <code>GOOGLE_CLIENT_EMAIL</code> matches the JSON key and that <code>GOOGLE_PRIVATE_KEY</code> preserves newlines or escaped <code>\n</code> characters.</p>
+
+            <h2 id="related">Related guides</h2>
+            <div class="guide-list">
+              <a class="guide-link" href="/ga4-telegram-report">
+                <span><strong>GA4 Telegram report setup</strong><span>Set up the full daily report flow.</span></span>
+                <em>Read</em>
+              </a>
+              <a class="guide-link" href="/google-analytics-data-api-telegram-report">
+                <span><strong>Google Analytics Data API report</strong><span>Understand how the report reads GA4 data.</span></span>
+                <em>Read</em>
+              </a>
+            </div>
+          </article>
+
+          <aside class="toc" aria-label="Guide contents">
+            <strong>On this page</strong>
+            <a href="#short-answer">Short answer</a>
+            <a href="#check-property">Check property</a>
+            <a href="#api-method">Admin API</a>
+            <a href="#verify">Dry run</a>
+            <a href="#related">Related guides</a>
+          </aside>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <span>Web Analytics Reporter. MIT licensed.</span>
+        <div class="footer-links">
+          <a href="/answers">Answer guide</a>
+          <a href="mailto:contact@analyticsreporter.xyz">Contact</a>
+          <a href="https://github.com/pntech20/web-analytics-reporter">GitHub</a>
+          <a href="https://www.npmjs.com/package/web-analytics-reporter">npm</a>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

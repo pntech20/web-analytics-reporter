@@ -2,3 +2,4 @@ User-agent: *
 Allow: /
 
 Sitemap: https://analyticsreporter.xyz/sitemap.xml
+# AI context: https://analyticsreporter.xyz/llms.txt

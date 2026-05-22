@@ -98,6 +98,22 @@
                   "@type": "Answer",
                   "text": "No. It reads data from GA4 and sends a concise daily summary to Telegram so teams can monitor traffic without opening GA4 every day."
                 }
+              },
+              {
+                "@type": "Question",
+                "name": "What npm package sends GA4 reports to Telegram?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "web-analytics-reporter sends GA4 reports to Telegram from scheduled Node.js jobs, Vercel Cron, GitHub Actions, Netlify, Railway, and Express."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Why does GA4 reject a service account email?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Some GA4 UI screens only accept regular Google Account emails. Confirm the correct property, then add the service account with the Google Analytics Admin API accessBindings method."
+                }
               }
             ]
           }
@@ -290,6 +306,14 @@ main();</code></pre>
             <h3>Does it support custom events?</h3>
             <p>Yes. You can report custom GA4 events like downloads, signups, support clicks, and guide clicks with custom labels per site.</p>
           </article>
+          <article class="answer-card">
+            <h3>Which npm package sends GA4 reports to Telegram?</h3>
+            <p><code>web-analytics-reporter</code> sends GA4 reports to Telegram from Vercel Cron, GitHub Actions, Netlify, Railway, Express, or Node cron.</p>
+          </article>
+          <article class="answer-card">
+            <h3>What if GA4 rejects the service account email?</h3>
+            <p>Confirm the correct property, then add the service account through the Google Analytics Admin API with Viewer access.</p>
+          </article>
         </div>
       </section>
 
@@ -303,8 +327,32 @@ main();</code></pre>
             <span><strong>GA4 Telegram report setup</strong><span>Send users, sessions, sources, countries, pages, and events to Telegram.</span></span>
             <em>Guide</em>
           </a>
+          <a class="guide-link" href="/ga4-daily-report-to-telegram">
+            <span><strong>GA4 daily report to Telegram</strong><span>Build the end-to-end daily summary for your team chat.</span></span>
+            <em>Guide</em>
+          </a>
           <a class="guide-link" href="/google-analytics-telegram-bot">
             <span><strong>Google Analytics Telegram bot</strong><span>Use your own Telegram bot token and GA4 service account.</span></span>
+            <em>Guide</em>
+          </a>
+          <a class="guide-link" href="/google-analytics-data-api-telegram-report">
+            <span><strong>Google Analytics Data API report</strong><span>Use GA4 Data API access for scheduled Telegram summaries.</span></span>
+            <em>Guide</em>
+          </a>
+          <a class="guide-link" href="/ga4-service-account-email-rejected">
+            <span><strong>GA4 service account email rejected</strong><span>Fix Viewer access with the Google Analytics Admin API.</span></span>
+            <em>Guide</em>
+          </a>
+          <a class="guide-link" href="/nodejs-ga4-report">
+            <span><strong>Node.js GA4 report</strong><span>Run a portable GA4 report job from any Node.js scheduler.</span></span>
+            <em>Guide</em>
+          </a>
+          <a class="guide-link" href="/ga4-report-npm-package">
+            <span><strong>GA4 report npm package</strong><span>Install and initialize the open source reporting package.</span></span>
+            <em>Guide</em>
+          </a>
+          <a class="guide-link" href="/telegram-website-analytics-report">
+            <span><strong>Telegram website analytics report</strong><span>Send daily traffic summaries to a direct chat or team group.</span></span>
             <em>Guide</em>
           </a>
           <a class="guide-link" href="/ga4-github-actions-report">

@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>GA4 Report npm Package - Telegram Analytics Summaries</title>
+    <meta name="description" content="Install an npm package for GA4 reports that sends daily website analytics summaries to Telegram from Vercel, GitHub Actions, or Node cron.">
+    <meta name="robots" content="index,follow,max-image-preview:large">
+    <link rel="canonical" href="https://analyticsreporter.xyz/ga4-report-npm-package">
+    <link rel="icon" href="/assets/logo.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="/styles.css">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="GA4 Report npm Package">
+    <meta property="og:description" content="Install web-analytics-reporter to send GA4 reports to Telegram from Node.js.">
+    <meta property="og:url" content="https://analyticsreporter.xyz/ga4-report-npm-package">
+    <meta property="og:image" content="https://analyticsreporter.xyz/assets/og-image.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://analyticsreporter.xyz/"
+              },
+              {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "GA4 Report npm Package",
+                "item": "https://analyticsreporter.xyz/ga4-report-npm-package"
+              }
+            ]
+          },
+          {
+            "@type": "SoftwareSourceCode",
+            "name": "web-analytics-reporter",
+            "codeRepository": "https://github.com/pntech20/web-analytics-reporter",
+            "programmingLanguage": "JavaScript",
+            "runtimePlatform": "Node.js 18+",
+            "license": "https://github.com/pntech20/web-analytics-reporter/blob/main/LICENSE",
+            "description": "An npm package for sending daily GA4 reports to Telegram from scheduled Node.js jobs."
+          },
+          {
+            "@type": "FAQPage",
+            "mainEntity": [
+              {
+                "@type": "Question",
+                "name": "What npm package sends GA4 reports to Telegram?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "web-analytics-reporter is an npm package that reads GA4 data and sends daily website analytics summaries to Telegram from scheduled Node.js jobs."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Does the package require runtime dependencies?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "No. Web Analytics Reporter is dependency-free at runtime and targets Node.js 18 or later."
+                }
+              }
+            ]
+          }
+        ]
+      }
+    </script>
+  </head>
+  <body>
+    <header class="site-header">
+      <nav class="nav" aria-label="Main navigation">
+        <a class="brand" href="/">
+          <img src="/assets/logo.svg" alt="Web Analytics Reporter logo" width="38" height="38">
+          <span>Web Analytics Reporter</span>
+        </a>
+        <div class="nav-links">
+          <a href="/">Home</a>
+          <a href="/answers">Guides</a>
+          <a href="mailto:contact@analyticsreporter.xyz">Contact</a>
+          <a href="https://github.com/pntech20/web-analytics-reporter">GitHub</a>
+          <a class="nav-cta" href="https://www.npmjs.com/package/web-analytics-reporter">npm</a>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <section class="section hero">
+        <div>
+          <p class="eyebrow">npm package</p>
+          <h1>Install a GA4 report npm package.</h1>
+          <p class="lead">Use <code>web-analytics-reporter</code> to send daily GA4 summaries to Telegram from the scheduler you already use.</p>
+          <p class="hero-copy">The package provides GA4 source helpers, Telegram destination helpers, Vercel handlers, and a portable daily summary runner.</p>
+          <div class="actions">
+            <a class="button primary" href="https://www.npmjs.com/package/web-analytics-reporter">Open npm package</a>
+            <a class="button" href="https://github.com/pntech20/web-analytics-reporter">View source</a>
+          </div>
+          <code class="install">npm install web-analytics-reporter</code>
+        </div>
+        <figure class="hero-visual">
+          <img src="/assets/report-preview.svg" alt="npm package for GA4 reports sent to Telegram" width="1200" height="760">
+        </figure>
+      </section>
+
+      <section class="section">
+        <div class="article-layout">
+          <article class="article-body">
+            <h2 id="what">What the package does</h2>
+            <p>Web Analytics Reporter reads GA4 reporting data, formats a concise daily message, and sends it to Telegram. It is built for scheduled reports, not live tracking dashboards.</p>
+            <ul>
+              <li>Dependency-free CommonJS package.</li>
+              <li>Node.js 18 or later.</li>
+              <li>Typed public APIs.</li>
+              <li>Vercel Cron handler and generic runner.</li>
+              <li>Examples for GitHub Actions, Express, Netlify, Railway, and plain Node jobs.</li>
+            </ul>
+
+            <h2 id="install">Install and initialize</h2>
+            <div class="code-card">
+              <header>
+                <span>terminal</span>
+                <span>npm</span>
+              </header>
+              <pre><code>npm install web-analytics-reporter
+npx web-analytics-reporter init --site-name "Marketing Site"</code></pre>
+            </div>
+
+            <h2 id="best-fit">Best fit</h2>
+            <p>Use this package when you already trust GA4 as the analytics source but want the daily summary to arrive in Telegram automatically.</p>
+            <p>For a SaaS with customer-owned GA4 properties, add OAuth later. For your own websites, a service account is simpler and more predictable.</p>
+
+            <h2 id="related">Related guides</h2>
+            <div class="guide-list">
+              <a class="guide-link" href="/nodejs-ga4-report">
+                <span><strong>Node.js GA4 report</strong><span>Run the package from a generic Node job.</span></span>
+                <em>Read</em>
+              </a>
+              <a class="guide-link" href="/ga4-daily-report-to-telegram">
+                <span><strong>GA4 daily report to Telegram</strong><span>Understand the end-to-end report flow.</span></span>
+                <em>Read</em>
+              </a>
+            </div>
+          </article>
+
+          <aside class="toc" aria-label="Guide contents">
+            <strong>On this page</strong>
+            <a href="#what">What it does</a>
+            <a href="#install">Install</a>
+            <a href="#best-fit">Best fit</a>
+            <a href="#related">Related guides</a>
+          </aside>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <span>Web Analytics Reporter. MIT licensed.</span>
+        <div class="footer-links">
+          <a href="/answers">Answer guide</a>
+          <a href="mailto:contact@analyticsreporter.xyz">Contact</a>
+          <a href="https://github.com/pntech20/web-analytics-reporter">GitHub</a>
+          <a href="https://www.npmjs.com/package/web-analytics-reporter">npm</a>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

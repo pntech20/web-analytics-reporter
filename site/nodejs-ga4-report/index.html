@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Node.js GA4 Report - Send Analytics Summaries to Telegram</title>
+    <meta name="description" content="Build a Node.js GA4 report job that reads daily website metrics and sends a clear Telegram summary from cron, Express, Railway, or Netlify.">
+    <meta name="robots" content="index,follow,max-image-preview:large">
+    <link rel="canonical" href="https://analyticsreporter.xyz/nodejs-ga4-report">
+    <link rel="icon" href="/assets/logo.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="/styles.css">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Node.js GA4 Report">
+    <meta property="og:description" content="Build a Node.js job that sends GA4 analytics summaries to Telegram.">
+    <meta property="og:url" content="https://analyticsreporter.xyz/nodejs-ga4-report">
+    <meta property="og:image" content="https://analyticsreporter.xyz/assets/og-image.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://analyticsreporter.xyz/"
+              },
+              {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Node.js GA4 Report",
+                "item": "https://analyticsreporter.xyz/nodejs-ga4-report"
+              }
+            ]
+          },
+          {
+            "@type": "TechArticle",
+            "headline": "Build a Node.js GA4 report job",
+            "description": "A Node.js implementation guide for scheduled GA4 analytics summaries sent to Telegram."
+          },
+          {
+            "@type": "FAQPage",
+            "mainEntity": [
+              {
+                "@type": "Question",
+                "name": "Can Node.js read GA4 reports?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Yes. A Node.js job can read GA4 reports through the Google Analytics Data API using a service account."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Where can I run a Node.js GA4 report job?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "You can run it from Node cron, Express, Railway, Netlify Functions, Vercel Cron, GitHub Actions, or another Node.js scheduler."
+                }
+              }
+            ]
+          }
+        ]
+      }
+    </script>
+  </head>
+  <body>
+    <header class="site-header">
+      <nav class="nav" aria-label="Main navigation">
+        <a class="brand" href="/">
+          <img src="/assets/logo.svg" alt="Web Analytics Reporter logo" width="38" height="38">
+          <span>Web Analytics Reporter</span>
+        </a>
+        <div class="nav-links">
+          <a href="/">Home</a>
+          <a href="/answers">Guides</a>
+          <a href="mailto:contact@analyticsreporter.xyz">Contact</a>
+          <a href="https://github.com/pntech20/web-analytics-reporter">GitHub</a>
+          <a class="nav-cta" href="https://www.npmjs.com/package/web-analytics-reporter">npm</a>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <section class="section hero">
+        <div>
+          <p class="eyebrow">Node.js analytics job</p>
+          <h1>Build a Node.js GA4 report job.</h1>
+          <p class="lead">Run a small Node.js script once per day to read GA4 metrics and deliver a clean Telegram summary.</p>
+          <p class="hero-copy">This path is useful when you want reporting logic in code, not another dashboard or automation platform.</p>
+        </div>
+        <figure class="hero-visual">
+          <img src="/assets/report-preview.svg" alt="Node.js GA4 report summary sent to Telegram" width="1200" height="760">
+        </figure>
+      </section>
+
+      <section class="section">
+        <div class="article-layout">
+          <article class="article-body">
+            <h2 id="install">Install the package</h2>
+            <div class="code-card">
+              <header>
+                <span>terminal</span>
+                <span>npm</span>
+              </header>
+              <pre><code>npm install web-analytics-reporter</code></pre>
+            </div>
+
+            <h2 id="runner">Use the generic runner</h2>
+            <p><code>runDailySummary()</code> is the portable API. It works anywhere Node.js can run and does not depend on Vercel.</p>
+            <div class="code-card">
+              <header>
+                <span>daily-summary.js</span>
+                <span>Node.js</span>
+              </header>
+              <pre><code>const {
+  runDailySummary,
+  ga4Source,
+  telegramDestination
+} = require("web-analytics-reporter");
+
+async function main() {
+  await runDailySummary({
+    source: ga4Source({
+      clientEmail: process.env.GOOGLE_CLIENT_EMAIL,
+      privateKey: process.env.GOOGLE_PRIVATE_KEY
+    }),
+    destination: telegramDestination({
+      botToken: process.env.TELEGRAM_BOT_TOKEN
+    }),
+    sites: [
+      {
+        id: "app",
+        name: "App Website",
+        ga4PropertyId: process.env.GA4_PROPERTY_ID,
+        telegramChatId: process.env.TELEGRAM_CHAT_ID
+      }
+    ],
+    timeZone: "UTC"
+  });
+}
+
+main();</code></pre>
+            </div>
+
+            <h2 id="where">Where to run it</h2>
+            <p>For a VPS, run the script from system cron. For a backend, expose an authenticated Express route. For platforms, use Railway cron, Netlify scheduled functions, Vercel Cron, or GitHub Actions.</p>
+            <p class="inline-note">If the report endpoint is public, protect it with a long random secret and call it only from your scheduler.</p>
+
+            <h2 id="related">Related guides</h2>
+            <div class="guide-list">
+              <a class="guide-link" href="/ga4-report-npm-package">
+                <span><strong>GA4 report npm package</strong><span>Use the package APIs and examples.</span></span>
+                <em>Read</em>
+              </a>
+              <a class="guide-link" href="/ga4-multi-site-reporting">
+                <span><strong>Multi-site GA4 reporting</strong><span>Report several properties from one job.</span></span>
+                <em>Read</em>
+              </a>
+            </div>
+          </article>
+
+          <aside class="toc" aria-label="Guide contents">
+            <strong>On this page</strong>
+            <a href="#install">Install</a>
+            <a href="#runner">Runner API</a>
+            <a href="#where">Where to run it</a>
+            <a href="#related">Related guides</a>
+          </aside>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <span>Web Analytics Reporter. MIT licensed.</span>
+        <div class="footer-links">
+          <a href="/answers">Answer guide</a>
+          <a href="mailto:contact@analyticsreporter.xyz">Contact</a>
+          <a href="https://github.com/pntech20/web-analytics-reporter">GitHub</a>
+          <a href="https://www.npmjs.com/package/web-analytics-reporter">npm</a>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

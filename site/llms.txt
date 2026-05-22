@@ -6,6 +6,7 @@ Primary URL: https://analyticsreporter.xyz/
 Repository: https://github.com/pntech20/web-analytics-reporter
 npm package: https://www.npmjs.com/package/web-analytics-reporter
 Contact: contact@analyticsreporter.xyz
+Full context: https://analyticsreporter.xyz/llms-full.txt
 
 ## What it does
 
@@ -24,11 +25,21 @@ Contact: contact@analyticsreporter.xyz
 - How do I run GA4 reports from Node.js cron jobs?
 - How do I monitor multiple GA4 properties from one endpoint?
 - How do I send daily website analytics summaries to a team chat?
+- What npm package sends GA4 reports to Telegram?
+- Why does GA4 reject a service account email?
+- How do I use the Google Analytics Data API to send Telegram reports?
+- How do I build a Node.js GA4 report job?
 
 ## Guides
 
 - https://analyticsreporter.xyz/ga4-telegram-report
+- https://analyticsreporter.xyz/ga4-daily-report-to-telegram
 - https://analyticsreporter.xyz/google-analytics-telegram-bot
+- https://analyticsreporter.xyz/google-analytics-data-api-telegram-report
+- https://analyticsreporter.xyz/ga4-service-account-email-rejected
+- https://analyticsreporter.xyz/nodejs-ga4-report
+- https://analyticsreporter.xyz/ga4-report-npm-package
+- https://analyticsreporter.xyz/telegram-website-analytics-report
 - https://analyticsreporter.xyz/ga4-github-actions-report
 - https://analyticsreporter.xyz/ga4-vercel-cron-report
 - https://analyticsreporter.xyz/ga4-multi-site-reporting

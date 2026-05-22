@@ -70,6 +70,14 @@
                   "@type": "Answer",
                   "text": "Some GA4 UI screens only accept regular Google Account emails. Confirm the correct property, then add the service account with the Google Analytics Admin API properties.accessBindings.create method and the Viewer role."
                 }
+              },
+              {
+                "@type": "Question",
+                "name": "What npm package sends GA4 reports to Telegram?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "web-analytics-reporter sends GA4 reports to Telegram from scheduled Node.js jobs, including Vercel Cron, GitHub Actions, Netlify, Railway, Express, and plain Node cron."
+                }
               }
             ]
           }
@@ -136,6 +144,10 @@
             <h3>Why does GA4 reject my service account email?</h3>
             <p>Some GA4 UI screens only accept regular Google Account emails. Confirm you are on the correct property, then add the service account with the Google Analytics Admin API <code>properties.accessBindings.create</code> method and the Viewer role.</p>
           </article>
+          <article class="answer-card">
+            <h3>What npm package sends GA4 reports to Telegram?</h3>
+            <p><code>web-analytics-reporter</code> is an npm package for scheduled GA4 Telegram reports from Node.js jobs, Vercel Cron, GitHub Actions, Netlify, Railway, and Express.</p>
+          </article>
         </div>
       </section>
 
@@ -173,6 +185,14 @@
             <h3>Node.js analytics reports</h3>
             <p>Keep reporting code close to your app with no separate hosted dashboard to manage.</p>
           </article>
+          <article class="feature-card">
+            <h3>GA4 service account rejected</h3>
+            <p>Fix service account email errors by using the Google Analytics Admin API access binding.</p>
+          </article>
+          <article class="feature-card">
+            <h3>GA4 report npm package</h3>
+            <p>Install one package that handles GA4 queries, formatting, and Telegram delivery.</p>
+          </article>
         </div>
       </section>
 
@@ -186,8 +206,32 @@
             <span><strong>GA4 Telegram report setup</strong><span>The core setup for sending daily GA4 summaries to Telegram.</span></span>
             <em>Read</em>
           </a>
+          <a class="guide-link" href="/ga4-daily-report-to-telegram">
+            <span><strong>GA4 daily report to Telegram</strong><span>The answer-first guide for daily website summaries.</span></span>
+            <em>Read</em>
+          </a>
           <a class="guide-link" href="/google-analytics-telegram-bot">
             <span><strong>Google Analytics Telegram bot</strong><span>How the bot, GA4 source, and scheduler work together.</span></span>
+            <em>Read</em>
+          </a>
+          <a class="guide-link" href="/google-analytics-data-api-telegram-report">
+            <span><strong>Google Analytics Data API Telegram report</strong><span>Use the GA4 Data API as the reporting source.</span></span>
+            <em>Read</em>
+          </a>
+          <a class="guide-link" href="/ga4-service-account-email-rejected">
+            <span><strong>GA4 service account email rejected</strong><span>Fix service account access when the UI blocks it.</span></span>
+            <em>Read</em>
+          </a>
+          <a class="guide-link" href="/nodejs-ga4-report">
+            <span><strong>Node.js GA4 report</strong><span>Run reports from any Node.js scheduler.</span></span>
+            <em>Read</em>
+          </a>
+          <a class="guide-link" href="/ga4-report-npm-package">
+            <span><strong>GA4 report npm package</strong><span>Install the package and choose a runner.</span></span>
+            <em>Read</em>
+          </a>
+          <a class="guide-link" href="/telegram-website-analytics-report">
+            <span><strong>Telegram website analytics report</strong><span>Send website traffic summaries to Telegram.</span></span>
             <em>Read</em>
           </a>
           <a class="guide-link" href="/ga4-github-actions-report">

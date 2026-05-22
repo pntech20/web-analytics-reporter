@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Telegram Website Analytics Report - Daily Traffic Summary</title>
+    <meta name="description" content="Send website analytics reports to Telegram with GA4 data, including users, sessions, top countries, traffic sources, pages, and custom events.">
+    <meta name="robots" content="index,follow,max-image-preview:large">
+    <link rel="canonical" href="https://analyticsreporter.xyz/telegram-website-analytics-report">
+    <link rel="icon" href="/assets/logo.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="/styles.css">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Telegram Website Analytics Report">
+    <meta property="og:description" content="Send daily website analytics summaries to Telegram with GA4 data.">
+    <meta property="og:url" content="https://analyticsreporter.xyz/telegram-website-analytics-report">
+    <meta property="og:image" content="https://analyticsreporter.xyz/assets/og-image.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://analyticsreporter.xyz/"
+              },
+              {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Telegram Website Analytics Report",
+                "item": "https://analyticsreporter.xyz/telegram-website-analytics-report"
+              }
+            ]
+          },
+          {
+            "@type": "TechArticle",
+            "headline": "Send website analytics reports to Telegram",
+            "description": "A guide for delivering GA4 website traffic summaries to Telegram from scheduled Node.js jobs."
+          },
+          {
+            "@type": "FAQPage",
+            "mainEntity": [
+              {
+                "@type": "Question",
+                "name": "Can Telegram receive website analytics reports?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Yes. A scheduled job can read website analytics from GA4 and send a summary to Telegram through a bot."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Can the report go to a Telegram group?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Yes. Telegram reports can be delivered to a direct chat, private group, or team channel if the bot has permission to send messages there."
+                }
+              }
+            ]
+          }
+        ]
+      }
+    </script>
+  </head>
+  <body>
+    <header class="site-header">
+      <nav class="nav" aria-label="Main navigation">
+        <a class="brand" href="/">
+          <img src="/assets/logo.svg" alt="Web Analytics Reporter logo" width="38" height="38">
+          <span>Web Analytics Reporter</span>
+        </a>
+        <div class="nav-links">
+          <a href="/">Home</a>
+          <a href="/answers">Guides</a>
+          <a href="mailto:contact@analyticsreporter.xyz">Contact</a>
+          <a href="https://github.com/pntech20/web-analytics-reporter">GitHub</a>
+          <a class="nav-cta" href="https://www.npmjs.com/package/web-analytics-reporter">npm</a>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <section class="section hero">
+        <div>
+          <p class="eyebrow">Telegram analytics report</p>
+          <h1>Send website analytics reports to Telegram.</h1>
+          <p class="lead">A Telegram analytics report puts daily website traffic, sources, countries, pages, and important events in the chat your team already checks.</p>
+          <p class="hero-copy">Use GA4 as the analytics backend and Web Analytics Reporter as the scheduled delivery layer.</p>
+        </div>
+        <figure class="hero-visual">
+          <img src="/assets/report-preview.svg" alt="Website analytics report delivered to Telegram" width="1200" height="760">
+        </figure>
+      </section>
+
+      <section class="section">
+        <div class="article-layout">
+          <article class="article-body">
+            <h2 id="why">Why send analytics to Telegram?</h2>
+            <p>Dashboards are easy to ignore. A short daily Telegram message makes traffic changes visible without asking the team to open GA4.</p>
+            <p>This is especially useful for indie products, docs sites, launch pages, SaaS marketing sites, and small teams monitoring multiple properties.</p>
+
+            <h2 id="message">What the message should include</h2>
+            <ul>
+              <li>Users, sessions, and views.</li>
+              <li>Top countries and traffic sources.</li>
+              <li>Top pages by views.</li>
+              <li>Product-specific custom events.</li>
+              <li>A note that GA4 data may lag and the report uses yesterday's completed data.</li>
+            </ul>
+
+            <h2 id="delivery">Delivery options</h2>
+            <p>Send the message to yourself while testing. Move it to a private Telegram group when the report is stable. For a team channel, add the bot as a member with permission to send messages.</p>
+
+            <h2 id="setup">Setup path</h2>
+            <ol>
+              <li>Create the Telegram bot with BotFather.</li>
+              <li>Send one message to the bot or add it to the target group.</li>
+              <li>Get the chat ID through the Telegram Bot API.</li>
+              <li>Connect GA4 with a service account.</li>
+              <li>Schedule the report with Web Analytics Reporter.</li>
+            </ol>
+
+            <h2 id="related">Related guides</h2>
+            <div class="guide-list">
+              <a class="guide-link" href="/google-analytics-telegram-bot">
+                <span><strong>Google Analytics Telegram bot</strong><span>Understand the bot-based report flow.</span></span>
+                <em>Read</em>
+              </a>
+              <a class="guide-link" href="/ga4-daily-report-to-telegram">
+                <span><strong>GA4 daily report to Telegram</strong><span>Build the daily website summary.</span></span>
+                <em>Read</em>
+              </a>
+            </div>
+          </article>
+
+          <aside class="toc" aria-label="Guide contents">
+            <strong>On this page</strong>
+            <a href="#why">Why Telegram</a>
+            <a href="#message">Message contents</a>
+            <a href="#delivery">Delivery</a>
+            <a href="#setup">Setup path</a>
+            <a href="#related">Related guides</a>
+          </aside>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <span>Web Analytics Reporter. MIT licensed.</span>
+        <div class="footer-links">
+          <a href="/answers">Answer guide</a>
+          <a href="mailto:contact@analyticsreporter.xyz">Contact</a>
+          <a href="https://github.com/pntech20/web-analytics-reporter">GitHub</a>
+          <a href="https://www.npmjs.com/package/web-analytics-reporter">npm</a>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
