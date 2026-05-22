@@ -1,12 +1,18 @@
 # Web Analytics Reporter
 
 [![CI](https://github.com/pntech20/web-analytics-reporter/actions/workflows/ci.yml/badge.svg)](https://github.com/pntech20/web-analytics-reporter/actions/workflows/ci.yml)
+[![npm version](https://img.shields.io/npm/v/web-analytics-reporter.svg)](https://www.npmjs.com/package/web-analytics-reporter)
+[![npm downloads](https://img.shields.io/npm/dm/web-analytics-reporter.svg)](https://www.npmjs.com/package/web-analytics-reporter)
+
+[Website](https://web-analytics-reporter.vercel.app/) · [npm](https://www.npmjs.com/package/web-analytics-reporter) · [GitHub](https://github.com/pntech20/web-analytics-reporter) · [Answers](https://web-analytics-reporter.vercel.app/answers)
 
 Reusable GA4 analytics reports for Telegram, Vercel Cron, and multi-site website monitoring.
 
 Use Web Analytics Reporter when you want a daily website summary in Telegram without opening
 Google Analytics every morning. It is small, dependency-free, and designed to be embedded in
 serverless jobs.
+
+![Example Telegram-style daily analytics report with users, sessions, countries, sources, pages, and events](https://web-analytics-reporter.vercel.app/assets/report-preview.svg)
 
 ## Features
 
@@ -97,12 +103,17 @@ Authorization: Bearer <CRON_SECRET>
 
 ## Environment Variables
 
+Copy `.env.example` and fill in your real values:
+
 ```text
 CRON_SECRET=
+GA4_PROPERTY_ID=
 GOOGLE_CLIENT_EMAIL=
 GOOGLE_PRIVATE_KEY=
 TELEGRAM_BOT_TOKEN=
 TELEGRAM_CHAT_ID=
+REPORT_SITE_NAME=
+REPORT_TIME_ZONE=
 ```
 
 Never commit these values. Store them in your deployment platform.

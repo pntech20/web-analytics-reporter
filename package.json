@@ -1,6 +1,6 @@
 {
   "name": "web-analytics-reporter",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Composable website analytics reports for GA4, Telegram, and serverless cron jobs.",
   "main": "index.js",
   "types": "index.d.ts",
@@ -40,6 +40,7 @@
   "files": [
     "*.js",
     "*.d.ts",
+    ".env.example",
     "README.md",
     "CHANGELOG.md",
     "LICENSE",
@@ -71,7 +72,7 @@
   "bugs": {
     "url": "https://github.com/pntech20/web-analytics-reporter/issues"
   },
-  "homepage": "https://github.com/pntech20/web-analytics-reporter#readme",
+  "homepage": "https://web-analytics-reporter.vercel.app/",
   "license": "MIT",
   "publishConfig": {
     "access": "public"
