@@ -62,6 +62,14 @@
                   "@type": "Answer",
                   "text": "Yes. Web Analytics Reporter can run from plain Node cron, GitHub Actions, Netlify Functions, Railway, Express, Vercel Cron, or another Node.js scheduler."
                 }
+              },
+              {
+                "@type": "Question",
+                "name": "Why does GA4 reject my service account email?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Some GA4 UI screens only accept regular Google Account emails. Confirm the correct property, then add the service account with the Google Analytics Admin API properties.accessBindings.create method and the Viewer role."
+                }
               }
             ]
           }
@@ -123,6 +131,10 @@
           <article class="answer-card">
             <h3>Is a service account safe?</h3>
             <p>It is safe when scoped carefully. Give the service account Viewer access only, store the private key in environment variables, and rotate leaked keys immediately.</p>
+          </article>
+          <article class="answer-card">
+            <h3>Why does GA4 reject my service account email?</h3>
+            <p>Some GA4 UI screens only accept regular Google Account emails. Confirm you are on the correct property, then add the service account with the Google Analytics Admin API <code>properties.accessBindings.create</code> method and the Viewer role.</p>
           </article>
         </div>
       </section>

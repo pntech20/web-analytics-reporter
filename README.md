@@ -168,6 +168,46 @@ npx web-analytics-reporter init --site-name "Marketing Site" --time-zone UTC
 If your private key is stored in an environment variable with escaped newlines, the package
 normalizes `\n` automatically.
 
+### If GA4 rejects the service account email
+
+Some Google Analytics UI screens only accept regular Google Account emails and may reject
+service account addresses such as:
+
+```text
+ga4-report-reader@your-project.iam.gserviceaccount.com
+```
+
+Before changing the key, confirm you are granting access to the correct GA4 property.
+Use the numeric property ID from the target website, not another property in the same
+account.
+
+If the UI still rejects the email, add the service account with the Google Analytics
+Admin API instead:
+
+1. Open `properties.accessBindings.create` in the Google Analytics Admin API explorer.
+2. Set `parent` to your property, for example:
+
+```text
+properties/123456789
+```
+
+3. Use this request body:
+
+```json
+{
+  "user": "ga4-report-reader@your-project.iam.gserviceaccount.com",
+  "roles": [
+    "predefinedRoles/viewer"
+  ]
+}
+```
+
+4. Execute the request while signed in with a Google account that has Administrator
+   access to that GA4 property.
+
+After the request succeeds, the service account can read reports for that property with
+Viewer access.
+
 ## Multiple Sites
 
 Configure multiple sites in one handler or runner call:

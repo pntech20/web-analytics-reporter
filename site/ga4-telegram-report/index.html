@@ -65,6 +65,14 @@
                   "@type": "Answer",
                   "text": "The report can include users, sessions, page views, top countries, top sources, top pages, and selected custom event counts."
                 }
+              },
+              {
+                "@type": "Question",
+                "name": "Why does GA4 reject a service account email?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Some GA4 UI screens only accept regular Google Account emails. Confirm the correct property, then add the service account with the Google Analytics Admin API properties.accessBindings.create method and the predefinedRoles/viewer role."
+                }
               }
             ]
           }
@@ -121,6 +129,7 @@
               <li>Create a Telegram bot with BotFather and get the chat ID.</li>
               <li>Run <code>runDailySummary()</code> from Vercel Cron, GitHub Actions, Netlify, Railway, Express, or another Node.js scheduler.</li>
             </ol>
+            <p class="inline-note">If the GA4 UI rejects the service account email, first confirm you are on the correct property. Then add the service account through the Google Analytics Admin API with <code>properties.accessBindings.create</code> and the <code>predefinedRoles/viewer</code> role.</p>
 
             <h2 id="code">Minimal Node.js example</h2>
             <div class="code-card">
