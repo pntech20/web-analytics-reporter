@@ -4,6 +4,11 @@ All notable changes to this project will be documented in this file.
 
 This project follows semantic versioning after public release.
 
+## 0.3.4
+
+- Document `GA4_MEASUREMENT_ID` as the optional frontend-only measurement ID key.
+- Clarify the required backend env vars, optional frontend tracking env var, and optional report display env vars.
+
 ## 0.3.3
 
 - Move the existing-site integration prompt higher in the README for faster onboarding.

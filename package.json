@@ -1,6 +1,6 @@
 {
   "name": "web-analytics-reporter",
-  "version": "0.3.3",
+  "version": "0.3.4",
   "description": "Send daily GA4 reports to Telegram from Node.js cron jobs, Vercel, GitHub Actions, Netlify, Railway, or Express.",
   "main": "index.js",
   "types": "index.d.ts",

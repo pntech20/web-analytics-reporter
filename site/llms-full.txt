@@ -47,6 +47,8 @@ Relevant page: https://analyticsreporter.xyz/ga4-report-npm-package
 
 The backend Telegram report does not need the `G-XXXXXXXXXX` measurement ID. It needs the numeric GA4 property ID because it reads existing data through the Google Analytics Data API. The optional browser helper uses a measurement ID only when the site wants the package to send page views or click events from the browser into GA4.
 
+If a project needs an environment variable for browser tracking, use `GA4_MEASUREMENT_ID` or the framework's public equivalent, such as `NEXT_PUBLIC_GA4_MEASUREMENT_ID` or `VITE_GA4_MEASUREMENT_ID`. Do not use the measurement ID for backend Telegram reports.
+
 Relevant page: https://analyticsreporter.xyz/ga4-report-npm-package
 
 ### How do I integrate Web Analytics Reporter into an existing website?

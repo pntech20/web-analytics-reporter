@@ -130,7 +130,7 @@ npx web-analytics-reporter init --site-name "Marketing Site"</code></pre>
 
             <h2 id="ids">Property ID vs measurement ID</h2>
             <p>The backend daily report uses the numeric GA4 property ID, for example <code>538634035</code>. This is the value passed as <code>ga4PropertyId</code> or stored as <code>GA4_PROPERTY_ID</code>.</p>
-            <p>The measurement ID, for example <code>G-RWN55JWZCB</code>, is only needed when you use the optional browser helper to send page views or click events from the website into GA4.</p>
+            <p>The measurement ID, for example <code>G-RWN55JWZCB</code>, is only needed when you use the optional browser helper to send page views or click events from the website into GA4. If you store it in an environment variable, use <code>GA4_MEASUREMENT_ID</code> or your framework's public equivalent.</p>
             <div class="code-card">
               <header>
                 <span>browser</span>
@@ -176,6 +176,9 @@ GOOGLE_CLIENT_EMAIL=&lt;service account email&gt;
 GOOGLE_PRIVATE_KEY=&lt;service account private key&gt;
 TELEGRAM_BOT_TOKEN=&lt;telegram bot token&gt;
 TELEGRAM_CHAT_ID=&lt;telegram chat id&gt;
+
+Optional frontend env var, only if adding browser GA4 tracking:
+GA4_MEASUREMENT_ID=&lt;GA4 measurement id like G-XXXXXXXXXX&gt;
 
 Optional display env vars:
 REPORT_SITE_NAME=&lt;site name&gt;

@@ -177,6 +177,9 @@ GOOGLE_PRIVATE_KEY=<service account private key>
 TELEGRAM_BOT_TOKEN=<telegram bot token>
 TELEGRAM_CHAT_ID=<telegram chat id>
 
+Optional frontend env var, only if adding browser GA4 tracking:
+GA4_MEASUREMENT_ID=<GA4 measurement id like G-XXXXXXXXXX>
+
 Optional display env vars:
 REPORT_SITE_NAME=<site name>
 REPORT_TIME_ZONE=<IANA timezone>
@@ -204,12 +207,18 @@ Copy `.env.example` and fill in your real values.
 ### Single-site setup
 
 ```text
+# Backend report, required.
 CRON_SECRET=
 GA4_PROPERTY_ID=
 GOOGLE_CLIENT_EMAIL=
 GOOGLE_PRIVATE_KEY=
 TELEGRAM_BOT_TOKEN=
 TELEGRAM_CHAT_ID=
+
+# Frontend tracking, optional.
+GA4_MEASUREMENT_ID=
+
+# Report display, optional.
 REPORT_SITE_ID=
 REPORT_SITE_NAME=
 REPORT_TIME_ZONE=
@@ -220,6 +229,7 @@ REPORT_TIME_ZONE=
 | Variable | Required | Used for |
 | --- | --- | --- |
 | `GA4_PROPERTY_ID` | Yes for backend reports | Numeric GA4 property ID that the report reads from. This is not the `G-XXXXXXXXXX` measurement ID. |
+| `GA4_MEASUREMENT_ID` | Optional, frontend only | GA4 measurement ID used only if the website sends page views or browser events with the optional browser helper. |
 | `GOOGLE_CLIENT_EMAIL` | Yes | Service account email from the Google Cloud JSON key. |
 | `GOOGLE_PRIVATE_KEY` | Yes | Service account private key. Escaped `\n` newlines are supported. |
 | `TELEGRAM_BOT_TOKEN` | Yes | Telegram bot token from BotFather. |
@@ -233,12 +243,12 @@ REPORT_TIME_ZONE=
 
 ```text
 GA4_PROPERTY_ID=537718780
-MEASUREMENT_ID=G-6NY9DKY6DW
+GA4_MEASUREMENT_ID=G-6NY9DKY6DW
 ```
 
-Use the property ID for scheduled backend reports. Use the measurement ID only on the
-website when sending page views or browser events into GA4. The report runner does not
-read `MEASUREMENT_ID`; it reads existing GA4 data through `GA4_PROPERTY_ID`.
+Use `GA4_PROPERTY_ID` for scheduled backend reports. Use `GA4_MEASUREMENT_ID` only on
+the website when sending page views or browser events into GA4. The report runner does
+not read `GA4_MEASUREMENT_ID`; it reads existing GA4 data through `GA4_PROPERTY_ID`.
 
 Never commit these values. Store them in your deployment platform, GitHub Actions
 secrets, Railway variables, Netlify environment variables, or local secret manager.
@@ -460,6 +470,10 @@ package for scheduled reports.
 This is the only package feature that needs a GA4 measurement ID such as
 `G-XXXXXXXXXX`. It is frontend tracking code. It is separate from the backend daily
 report, which uses the numeric `GA4_PROPERTY_ID`.
+
+If your frontend reads environment variables, use `GA4_MEASUREMENT_ID` or your
+framework's public equivalent, such as `NEXT_PUBLIC_GA4_MEASUREMENT_ID` or
+`VITE_GA4_MEASUREMENT_ID`.
 
 ```html
 <script src="/vendor/web-analytics-reporter/browser.js"></script>
