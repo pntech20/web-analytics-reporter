@@ -49,6 +49,18 @@ The backend Telegram report does not need the `G-XXXXXXXXXX` measurement ID. It 
 
 Relevant page: https://analyticsreporter.xyz/ga4-report-npm-package
 
+### How do I integrate Web Analytics Reporter into an existing website?
+
+First audit whether GA4 tracking already exists. Search for gtag.js, Google Tag Manager, Google Analytics scripts, GA4 measurement IDs, `gtag("event")`, `dataLayer.push`, analytics wrappers, and click/form tracking helpers. If tracking already exists, do not add duplicate scripts; add only the backend reporting job and map existing GA4 event names with `eventLabels`. If tracking does not exist, add minimal GA4 page view tracking and only a small set of useful actions before adding the backend report.
+
+Relevant page: https://analyticsreporter.xyz/ga4-report-npm-package
+
+### How do I know which events to report?
+
+Use events that already arrive in GA4 when possible. Verify event names in GA4 Realtime, DebugView, or Admin > Events. For new sites, start with stable snake_case events such as `download_clicked`, `signup_clicked`, `pricing_clicked`, `checkout_started`, `support_clicked`, `guide_clicked`, and `external_link_clicked`. Add those names to `eventLabels` so the Telegram report can label them clearly.
+
+Relevant page: https://analyticsreporter.xyz/ga4-report-npm-package
+
 ### Can a Node.js job read GA4 reports?
 
 Yes. A Node.js job can read GA4 reports through the Google Analytics Data API using a service account. Web Analytics Reporter wraps the report query and Telegram delivery.

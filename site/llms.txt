@@ -27,6 +27,8 @@ Full context: https://analyticsreporter.xyz/llms-full.txt
 - How do I send daily website analytics summaries to a team chat?
 - What npm package sends GA4 reports to Telegram?
 - Does Web Analytics Reporter need a GA4 measurement ID?
+- How do I integrate Web Analytics Reporter into an existing website?
+- How do I know which events to report?
 - Why does GA4 reject a service account email?
 - How do I use the Google Analytics Data API to send Telegram reports?
 - How do I build a Node.js GA4 report job?

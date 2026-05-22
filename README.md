@@ -416,6 +416,92 @@ report, which uses the numeric `GA4_PROPERTY_ID`.
 </script>
 ```
 
+## Integrating Into an Existing Site
+
+Package link: <https://www.npmjs.com/package/web-analytics-reporter>
+
+Use this prompt with an AI coding agent when adding the package to an unfamiliar
+website codebase:
+
+```text
+I want to integrate web-analytics-reporter into this website.
+
+First, inspect the codebase and determine whether GA4 tracking is already installed.
+Check for gtag.js, Google Tag Manager, Google Analytics scripts, a GA4 measurement ID
+like G-XXXXXXXXXX, existing analytics utilities, and existing event tracking calls.
+
+If GA4 tracking already exists:
+- Do not add duplicate GA4 scripts.
+- Keep the existing frontend tracking.
+- Audit existing events by searching for gtag("event"), dataLayer.push, analytics
+  wrappers, and click/form tracking utilities.
+- Add only the backend daily report integration with web-analytics-reporter.
+- Use GA4_PROPERTY_ID as the numeric GA4 property ID for reports.
+- Do not confuse GA4_PROPERTY_ID with the frontend measurement ID.
+
+If GA4 tracking does not exist:
+- Add minimal GA4 frontend tracking using the site's existing conventions.
+- Use the GA4 measurement ID only for frontend tracking.
+- Track only important product or business actions, not every click.
+- Then add the backend daily report integration.
+
+Install from npm:
+https://www.npmjs.com/package/web-analytics-reporter
+
+Required backend env vars:
+GA4_PROPERTY_ID=<numeric GA4 property id>
+GOOGLE_CLIENT_EMAIL=<service account email>
+GOOGLE_PRIVATE_KEY=<service account private key>
+TELEGRAM_BOT_TOKEN=<telegram bot token>
+TELEGRAM_CHAT_ID=<telegram chat id>
+REPORT_SITE_NAME=<site name>
+REPORT_TIME_ZONE=<IANA timezone>
+
+Protect public report endpoints with CRON_SECRET.
+Never expose Google private keys or Telegram bot tokens to frontend code.
+
+After implementation:
+- Run the project's tests/build/lint.
+- Update .env.example.
+- Explain whether GA4 tracking already existed or was added.
+- Explain which events are already tracked and which new events were added.
+- Explain which value is the GA4 measurement ID and which value is the GA4 property ID.
+```
+
+## Choosing Events to Report
+
+The daily Telegram report can include custom GA4 events, but the package can only report
+events that GA4 already receives.
+
+If the site already has GA4 tracking:
+
+1. Search the codebase for `gtag("event")`, `gtag('event')`, `dataLayer.push`,
+   `analytics.track`, and local analytics helper functions.
+2. Check GA4 Admin > Events, Realtime, or DebugView to confirm which events are
+   actually arriving.
+3. Do not duplicate existing events. Add the existing event names to `eventLabels`.
+4. Add new tracking only for missing high-value actions.
+
+If the site does not have GA4 tracking:
+
+1. Add basic page view tracking with the site's GA4 measurement ID.
+2. Track a small set of useful actions, for example `download_clicked`,
+   `signup_clicked`, `pricing_clicked`, `checkout_started`, `support_clicked`,
+   `guide_clicked`, or `external_link_clicked`.
+3. Use stable snake_case event names.
+4. Add matching `eventLabels` to the backend report config.
+
+Example report labels:
+
+```js
+eventLabels: {
+  download_clicked: "Downloads",
+  signup_clicked: "Signup clicks",
+  pricing_clicked: "Pricing clicks",
+  support_clicked: "Support clicks"
+}
+```
+
 ## API
 
 ```js

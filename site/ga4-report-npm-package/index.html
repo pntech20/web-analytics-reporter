@@ -140,6 +140,57 @@ npx web-analytics-reporter init --site-name "Marketing Site"</code></pre>
             </div>
             <p class="inline-note">Do not put the measurement ID in backend report config unless your frontend build also reads that environment variable. The Telegram report reads existing GA4 data with the property ID.</p>
 
+            <h2 id="integration-prompt">AI integration prompt</h2>
+            <p>When adding the package to a site you did not build, ask the coding agent to audit analytics first. Install from <a href="https://www.npmjs.com/package/web-analytics-reporter">the web-analytics-reporter npm package</a>.</p>
+            <div class="code-card">
+              <header>
+                <span>prompt</span>
+                <span>copy</span>
+              </header>
+              <pre><code>I want to integrate web-analytics-reporter into this website.
+
+First, inspect the codebase and determine whether GA4 tracking is already installed.
+Check for gtag.js, Google Tag Manager, Google Analytics scripts, a GA4 measurement ID
+like G-XXXXXXXXXX, existing analytics utilities, and existing event tracking calls.
+
+If GA4 tracking already exists:
+- Do not add duplicate GA4 scripts.
+- Keep the existing frontend tracking.
+- Audit existing events by searching for gtag("event"), dataLayer.push, analytics wrappers, and click/form tracking utilities.
+- Add only the backend daily report integration with web-analytics-reporter.
+- Use GA4_PROPERTY_ID as the numeric GA4 property ID for reports.
+
+If GA4 tracking does not exist:
+- Add minimal GA4 frontend tracking using the site's existing conventions.
+- Use the GA4 measurement ID only for frontend tracking.
+- Track only important product or business actions, not every click.
+- Then add the backend daily report integration.
+
+Package docs:
+https://www.npmjs.com/package/web-analytics-reporter
+https://analyticsreporter.xyz/llms-full.txt</code></pre>
+            </div>
+
+            <h2 id="events">Which events should it track?</h2>
+            <p>The Telegram report can include custom events only after those events are already arriving in GA4.</p>
+            <ul>
+              <li>If the site already has tracking, search for <code>gtag("event")</code>, <code>dataLayer.push</code>, analytics wrappers, and existing click or form tracking. Then map the existing event names into <code>eventLabels</code>.</li>
+              <li>If the site has no tracking, start with page views and a small set of meaningful actions such as <code>download_clicked</code>, <code>signup_clicked</code>, <code>pricing_clicked</code>, <code>checkout_started</code>, <code>support_clicked</code>, <code>guide_clicked</code>, and <code>external_link_clicked</code>.</li>
+              <li>Verify event names in GA4 Realtime, DebugView, or Admin > Events before relying on them in a daily report.</li>
+            </ul>
+            <div class="code-card">
+              <header>
+                <span>report config</span>
+                <span>events</span>
+              </header>
+              <pre><code>eventLabels: {
+  download_clicked: "Downloads",
+  signup_clicked: "Signup clicks",
+  pricing_clicked: "Pricing clicks",
+  support_clicked: "Support clicks"
+}</code></pre>
+            </div>
+
             <h2 id="best-fit">Best fit</h2>
             <p>Use this package when you already trust GA4 as the analytics source but want the daily summary to arrive in Telegram automatically.</p>
             <p>For a SaaS with customer-owned GA4 properties, add OAuth later. For your own websites, a service account is simpler and more predictable.</p>
@@ -162,6 +213,8 @@ npx web-analytics-reporter init --site-name "Marketing Site"</code></pre>
             <a href="#what">What it does</a>
             <a href="#install">Install</a>
             <a href="#ids">Property vs measurement ID</a>
+            <a href="#integration-prompt">AI prompt</a>
+            <a href="#events">Events</a>
             <a href="#best-fit">Best fit</a>
             <a href="#related">Related guides</a>
           </aside>

@@ -78,6 +78,14 @@
                   "@type": "Answer",
                   "text": "web-analytics-reporter sends GA4 reports to Telegram from scheduled Node.js jobs, including Vercel Cron, GitHub Actions, Netlify, Railway, Express, and plain Node cron."
                 }
+              },
+              {
+                "@type": "Question",
+                "name": "How do I know which events to report?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "If the site already has tracking, reuse events already sent to GA4 and map them with eventLabels. If the site has no tracking, start with a small set of meaningful actions such as downloads, signups, pricing clicks, support clicks, guide clicks, and external links."
+                }
               }
             ]
           }
@@ -147,6 +155,10 @@
           <article class="answer-card">
             <h3>What npm package sends GA4 reports to Telegram?</h3>
             <p><code>web-analytics-reporter</code> is an npm package for scheduled GA4 Telegram reports from Node.js jobs, Vercel Cron, GitHub Actions, Netlify, Railway, and Express.</p>
+          </article>
+          <article class="answer-card">
+            <h3>How do I know which events to report?</h3>
+            <p>If the site already has tracking, reuse events already sent to GA4 and map them with <code>eventLabels</code>. If the site has no tracking, start with a small set of meaningful actions such as downloads, signups, pricing clicks, support clicks, guide clicks, and external links.</p>
           </article>
         </div>
       </section>
