@@ -16,7 +16,7 @@ module.exports = createVercelDailySummaryHandler({
   timeZone: process.env.REPORT_TIME_ZONE || "UTC",
   sites: [
     {
-      id: "example",
+      id: process.env.REPORT_SITE_ID || "example",
       name: process.env.REPORT_SITE_NAME || "Example Site",
       ga4PropertyId: process.env.GA4_PROPERTY_ID,
       telegramChatId: process.env.TELEGRAM_CHAT_ID

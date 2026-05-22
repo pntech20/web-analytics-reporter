@@ -1,4 +1,4 @@
-import type { BuildDailySummaryMessageOptions, DailySummaryData, DailySummarySection } from "./core";
+import type { RunDailySummaryOptions } from "./runner";
 
 export interface VercelLikeRequest {
   headers: Record<string, string | undefined>;
@@ -12,41 +12,9 @@ export interface VercelLikeResponse {
   statusCode: number;
 }
 
-export interface ReporterSiteConfig {
-  chatId?: string;
-  eventLabels?: Record<string, string>;
-  eventNames?: string[];
-  ga4PropertyId?: string;
-  id: string;
-  limits?: object;
-  maxPathLength?: number;
-  name: string;
-  propertyId?: string;
-  sections?: DailySummarySection[];
-  telegramChatId?: string;
-  timeZone?: string;
-}
-
-export interface AnalyticsSource {
-  dailySummary(site: ReporterSiteConfig, reportOptions?: object): Promise<DailySummaryData>;
-}
-
-export interface ReportDestination {
-  send(report: { chatId?: string; siteId: string; siteName: string; text: string }): Promise<object>;
-}
-
-export interface VercelDailySummaryHandlerOptions {
+export interface VercelDailySummaryHandlerOptions extends Omit<RunDailySummaryOptions, "dryRun" | "site"> {
   allowUnauthenticated?: boolean;
-  defaultSite?: string;
-  destination: ReportDestination;
-  eventLabels?: Record<string, string>;
-  maxPathLength?: number;
-  report?: object;
   secret?: string;
-  sections?: BuildDailySummaryMessageOptions["sections"];
-  sites: ReporterSiteConfig[];
-  source: AnalyticsSource;
-  timeZone?: string;
 }
 
 export function createVercelDailySummaryHandler(
@@ -56,3 +24,4 @@ export function constantTimeEquals(left: string, right: string): boolean;
 export function headerValue(req: VercelLikeRequest, name: string): string;
 export function isAuthorized(req: VercelLikeRequest, secret?: string, allowUnauthenticated?: boolean): boolean;
 export function json(res: VercelLikeResponse, statusCode: number, payload: object): void;
+export { AnalyticsSource, ReportDestination, ReporterSiteConfig, normalizeSites, runDailySummary } from "./runner";

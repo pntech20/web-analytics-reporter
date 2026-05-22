@@ -4,6 +4,13 @@ All notable changes to this project will be documented in this file.
 
 This project follows semantic versioning after public release.
 
+## 0.3.0
+
+- Add platform-neutral `runDailySummary()` helper.
+- Reuse the generic runner from the Vercel adapter.
+- Add examples for plain Node cron, GitHub Actions, Express, Netlify Functions, and Railway.
+- Document non-Vercel usage paths.
+
 ## 0.2.0
 
 - Add `web-analytics-reporter init` CLI.

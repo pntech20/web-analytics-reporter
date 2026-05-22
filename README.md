@@ -18,7 +18,8 @@ serverless jobs.
 
 - GA4 daily summaries with users, sessions, page views, countries, sources, pages, and custom events.
 - Telegram delivery with one chat per site or a shared reporting chat.
-- Vercel Cron handler for scheduled reports.
+- Platform-neutral runner plus Vercel Cron handler for scheduled reports.
+- Examples for plain Node cron, GitHub Actions, Express, Netlify Functions, Railway, and Vercel.
 - Multi-site configuration from one API endpoint.
 - Browser helper for direct GA4 event tracking.
 - TypeScript declarations for every public entry point.
@@ -81,7 +82,7 @@ module.exports = createVercelDailySummaryHandler({
   timeZone: process.env.REPORT_TIME_ZONE || "UTC",
   sites: [
     {
-      id: "marketing",
+      id: process.env.REPORT_SITE_ID || "marketing",
       name: process.env.REPORT_SITE_NAME || "Marketing Site",
       ga4PropertyId: process.env.GA4_PROPERTY_ID,
       telegramChatId: process.env.TELEGRAM_CHAT_ID
@@ -132,6 +133,7 @@ GOOGLE_CLIENT_EMAIL=
 GOOGLE_PRIVATE_KEY=
 TELEGRAM_BOT_TOKEN=
 TELEGRAM_CHAT_ID=
+REPORT_SITE_ID=
 REPORT_SITE_NAME=
 REPORT_TIME_ZONE=
 ```
@@ -158,7 +160,7 @@ normalizes `\n` automatically.
 
 ## Multiple Sites
 
-Configure multiple sites in one handler:
+Configure multiple sites in one handler or runner call:
 
 ```js
 sites: [
@@ -188,6 +190,56 @@ Report every configured site:
 ```text
 /api/daily-summary?site=all&secret=<CRON_SECRET>
 ```
+
+## Non-Vercel Usage
+
+Vercel is only one adapter. For any Node.js runtime, call `runDailySummary()` directly:
+
+```js
+const {
+  ga4Source,
+  runDailySummary,
+  telegramDestination
+} = require("web-analytics-reporter");
+
+async function main() {
+  const result = await runDailySummary({
+    dryRun: process.argv.includes("--dry-run"),
+    source: ga4Source({
+      clientEmail: process.env.GOOGLE_CLIENT_EMAIL,
+      privateKey: process.env.GOOGLE_PRIVATE_KEY
+    }),
+    destination: telegramDestination({
+      botToken: process.env.TELEGRAM_BOT_TOKEN
+    }),
+    timeZone: process.env.REPORT_TIME_ZONE || "UTC",
+    sites: [
+      {
+        id: process.env.REPORT_SITE_ID || "default",
+        name: process.env.REPORT_SITE_NAME || "Website",
+        ga4PropertyId: process.env.GA4_PROPERTY_ID,
+        telegramChatId: process.env.TELEGRAM_CHAT_ID
+      }
+    ]
+  });
+
+  console.log(JSON.stringify(result, null, 2));
+}
+
+main().catch((error) => {
+  console.error(error);
+  process.exit(1);
+});
+```
+
+Schedule that script with the platform you already use:
+
+- Plain Node cron: `examples/node/daily-summary.js`
+- GitHub Actions schedule: `examples/github-actions/daily-summary.yml`
+- Express route: `examples/express/server.js`
+- Netlify Function: `examples/netlify/functions/daily-summary.js`
+- Railway scheduled job: `examples/railway/daily-summary.js`
+- Vercel Cron: `examples/vercel/daily-summary.js`
 
 ## Custom Events
 
@@ -247,6 +299,7 @@ const {
   buildDailySummaryMessage,
   createVercelDailySummaryHandler,
   ga4Source,
+  runDailySummary,
   telegramDestination
 } = require("web-analytics-reporter");
 ```
@@ -256,6 +309,7 @@ Subpath exports:
 ```js
 require("web-analytics-reporter/core");
 require("web-analytics-reporter/ga4");
+require("web-analytics-reporter/runner");
 require("web-analytics-reporter/telegram");
 require("web-analytics-reporter/vercel");
 require("web-analytics-reporter/browser");

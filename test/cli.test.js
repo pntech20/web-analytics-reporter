@@ -45,6 +45,7 @@ test("initProject creates Vercel starter files", () => {
 
   const api = fs.readFileSync(path.join(dir, "api/daily-summary.js"), "utf8");
   assert.match(api, /process\.env\.GA4_PROPERTY_ID/);
+  assert.match(api, /process\.env\.REPORT_SITE_ID/);
   assert.match(api, /DevClean/);
 
   const vercelConfig = JSON.parse(fs.readFileSync(path.join(dir, "vercel.json"), "utf8"));

@@ -1,0 +1,44 @@
+name: Daily analytics summary
+
+on:
+  schedule:
+    - cron: "0 8 * * *"
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "Preview without sending Telegram message"
+        required: false
+        default: "false"
+
+jobs:
+  report:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install dependencies
+        run: npm install --no-save web-analytics-reporter
+
+      - name: Send daily summary
+        env:
+          GA4_PROPERTY_ID: ${{ secrets.GA4_PROPERTY_ID }}
+          GOOGLE_CLIENT_EMAIL: ${{ secrets.GOOGLE_CLIENT_EMAIL }}
+          GOOGLE_PRIVATE_KEY: ${{ secrets.GOOGLE_PRIVATE_KEY }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          REPORT_SITE_ID: ${{ vars.REPORT_SITE_ID || 'default' }}
+          REPORT_SITE_NAME: ${{ vars.REPORT_SITE_NAME || 'Website' }}
+          REPORT_TIME_ZONE: ${{ vars.REPORT_TIME_ZONE || 'UTC' }}
+        run: |
+          if [ "${{ github.event.inputs.dry_run }}" = "true" ]; then
+            node examples/github-actions/daily-summary.js --dry-run
+          else
+            node examples/github-actions/daily-summary.js
+          fi

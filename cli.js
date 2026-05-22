@@ -17,6 +17,7 @@ const ENV_KEYS = [
   "GOOGLE_PRIVATE_KEY",
   "TELEGRAM_BOT_TOKEN",
   "TELEGRAM_CHAT_ID",
+  "REPORT_SITE_ID",
   "REPORT_SITE_NAME",
   "REPORT_TIME_ZONE"
 ];
@@ -107,7 +108,7 @@ module.exports = createVercelDailySummaryHandler({
   timeZone: process.env.REPORT_TIME_ZONE || ${JSON.stringify(options.timeZone)},
   sites: [
     {
-      id: ${JSON.stringify(options.siteId)},
+      id: process.env.REPORT_SITE_ID || ${JSON.stringify(options.siteId)},
       name: process.env.REPORT_SITE_NAME || ${JSON.stringify(options.siteName)},
       ga4PropertyId: process.env.GA4_PROPERTY_ID,
       telegramChatId: process.env.TELEGRAM_CHAT_ID
@@ -135,6 +136,7 @@ TELEGRAM_BOT_TOKEN=123456789:replace-with-bot-token
 TELEGRAM_CHAT_ID=123456789
 
 # Report display settings.
+REPORT_SITE_ID=${options.siteId}
 REPORT_SITE_NAME=${options.siteName}
 REPORT_TIME_ZONE=${options.timeZone}
 `;
