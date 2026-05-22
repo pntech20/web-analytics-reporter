@@ -57,7 +57,7 @@
   ],
   "scripts": {
     "test": "node --test",
-    "check": "node --check *.js bin/*.js scripts/*.js test/*.js examples/*/*.js examples/netlify/functions/*.js",
+    "check": "node --check *.js bin/*.js scripts/*.js site/*.js test/*.js examples/*/*.js examples/netlify/functions/*.js",
     "site:check": "node scripts/site-check.js",
     "pack:check": "npm pack --dry-run"
   },

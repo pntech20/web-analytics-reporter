@@ -347,13 +347,36 @@ h2 {
 
 .code-card header {
   display: flex;
-  justify-content: space-between;
+  align-items: center;
+  justify-content: flex-start;
   gap: 12px;
   padding: 14px 16px;
   border-bottom: 1px solid var(--line);
   color: var(--muted);
   font-size: 13px;
   font-weight: 700;
+}
+
+.code-card header > span:last-of-type {
+  margin-left: auto;
+}
+
+.copy-button {
+  min-height: 30px;
+  padding: 0 10px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: white;
+  color: var(--ink);
+  cursor: pointer;
+  font: inherit;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.copy-button:hover {
+  border-color: #b8c7c9;
+  background: var(--soft);
 }
 
 pre {
