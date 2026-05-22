@@ -5,7 +5,7 @@
   "main": "index.js",
   "types": "index.d.ts",
   "bin": {
-    "web-analytics-reporter": "./bin/web-analytics-reporter.js"
+    "web-analytics-reporter": "bin/web-analytics-reporter.js"
   },
   "exports": {
     ".": {
