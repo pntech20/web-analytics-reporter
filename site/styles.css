@@ -194,6 +194,10 @@ h1 {
   margin: 34px 0 24px;
 }
 
+.article-actions {
+  margin: 18px 0 22px;
+}
+
 .button {
   display: inline-flex;
   align-items: center;

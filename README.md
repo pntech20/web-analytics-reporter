@@ -217,7 +217,7 @@ account.
 If the UI still rejects the email, add the service account with the Google Analytics
 Admin API instead:
 
-1. Open `properties.accessBindings.create` in the Google Analytics Admin API explorer.
+1. Open [`properties.accessBindings.create` in the Google Analytics Admin API explorer](https://developers.google.com/analytics/devguides/config/admin/v1/rest/v1alpha/properties.accessBindings/create).
 2. Set `parent` to your property, for example:
 
 ```text
