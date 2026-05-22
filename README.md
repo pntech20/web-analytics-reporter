@@ -160,7 +160,7 @@ REPORT_TIME_ZONE=
 
 | Variable | Required | Used for |
 | --- | --- | --- |
-| `GA4_PROPERTY_ID` | Yes | Numeric GA4 property ID that the report reads from. This is not the `G-XXXXXXXXXX` measurement ID. |
+| `GA4_PROPERTY_ID` | Yes for backend reports | Numeric GA4 property ID that the report reads from. This is not the `G-XXXXXXXXXX` measurement ID. |
 | `GOOGLE_CLIENT_EMAIL` | Yes | Service account email from the Google Cloud JSON key. |
 | `GOOGLE_PRIVATE_KEY` | Yes | Service account private key. Escaped `\n` newlines are supported. |
 | `TELEGRAM_BOT_TOKEN` | Yes | Telegram bot token from BotFather. |
@@ -177,8 +177,9 @@ GA4_PROPERTY_ID=537718780
 MEASUREMENT_ID=G-6NY9DKY6DW
 ```
 
-Use the property ID for scheduled reports. Use the measurement ID only on the website
-when sending page views or browser events into GA4.
+Use the property ID for scheduled backend reports. Use the measurement ID only on the
+website when sending page views or browser events into GA4. The report runner does not
+read `MEASUREMENT_ID`; it reads existing GA4 data through `GA4_PROPERTY_ID`.
 
 Never commit these values. Store them in your deployment platform, GitHub Actions
 secrets, Railway variables, Netlify environment variables, or local secret manager.
@@ -396,6 +397,10 @@ Or per site:
 
 The browser helper is optional. You can use your own frontend tracking and only use this
 package for scheduled reports.
+
+This is the only package feature that needs a GA4 measurement ID such as
+`G-XXXXXXXXXX`. It is frontend tracking code. It is separate from the backend daily
+report, which uses the numeric `GA4_PROPERTY_ID`.
 
 ```html
 <script src="/vendor/web-analytics-reporter/browser.js"></script>

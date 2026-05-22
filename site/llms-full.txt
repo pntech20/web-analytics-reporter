@@ -43,6 +43,12 @@ The npm package is `web-analytics-reporter`.
 
 Relevant page: https://analyticsreporter.xyz/ga4-report-npm-package
 
+### Does Web Analytics Reporter need a GA4 measurement ID?
+
+The backend Telegram report does not need the `G-XXXXXXXXXX` measurement ID. It needs the numeric GA4 property ID because it reads existing data through the Google Analytics Data API. The optional browser helper uses a measurement ID only when the site wants the package to send page views or click events from the browser into GA4.
+
+Relevant page: https://analyticsreporter.xyz/ga4-report-npm-package
+
 ### Can a Node.js job read GA4 reports?
 
 Yes. A Node.js job can read GA4 reports through the Google Analytics Data API using a service account. Web Analytics Reporter wraps the report query and Telegram delivery.

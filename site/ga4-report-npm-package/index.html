@@ -128,6 +128,18 @@
 npx web-analytics-reporter init --site-name "Marketing Site"</code></pre>
             </div>
 
+            <h2 id="ids">Property ID vs measurement ID</h2>
+            <p>The backend daily report uses the numeric GA4 property ID, for example <code>538634035</code>. This is the value passed as <code>ga4PropertyId</code> or stored as <code>GA4_PROPERTY_ID</code>.</p>
+            <p>The measurement ID, for example <code>G-RWN55JWZCB</code>, is only needed when you use the optional browser helper to send page views or click events from the website into GA4.</p>
+            <div class="code-card">
+              <header>
+                <span>browser</span>
+                <span>optional</span>
+              </header>
+              <pre><code>WebAnalyticsReporter.initGA4("G-RWN55JWZCB");</code></pre>
+            </div>
+            <p class="inline-note">Do not put the measurement ID in backend report config unless your frontend build also reads that environment variable. The Telegram report reads existing GA4 data with the property ID.</p>
+
             <h2 id="best-fit">Best fit</h2>
             <p>Use this package when you already trust GA4 as the analytics source but want the daily summary to arrive in Telegram automatically.</p>
             <p>For a SaaS with customer-owned GA4 properties, add OAuth later. For your own websites, a service account is simpler and more predictable.</p>
@@ -149,6 +161,7 @@ npx web-analytics-reporter init --site-name "Marketing Site"</code></pre>
             <strong>On this page</strong>
             <a href="#what">What it does</a>
             <a href="#install">Install</a>
+            <a href="#ids">Property vs measurement ID</a>
             <a href="#best-fit">Best fit</a>
             <a href="#related">Related guides</a>
           </aside>
