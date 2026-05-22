@@ -121,6 +121,14 @@ button:focus-visible {
   padding-bottom: 54px;
 }
 
+.guide-hero {
+  grid-template-columns: minmax(0, 0.86fr) minmax(360px, 0.8fr);
+  gap: 48px;
+  min-height: auto;
+  padding-top: 78px;
+  padding-bottom: 64px;
+}
+
 .hero > *,
 .split > *,
 .section-heading > *,
@@ -153,6 +161,12 @@ h1 {
   overflow-wrap: anywhere;
 }
 
+.guide-hero h1 {
+  max-width: 700px;
+  font-size: clamp(40px, 4.6vw, 60px);
+  line-height: 1.05;
+}
+
 .lead {
   max-width: 720px;
   margin-bottom: 30px;
@@ -160,6 +174,12 @@ h1 {
   font-size: clamp(22px, 3vw, 34px);
   line-height: 1.18;
   letter-spacing: 0;
+}
+
+.guide-hero .lead {
+  max-width: 680px;
+  font-size: clamp(20px, 2.1vw, 27px);
+  line-height: 1.24;
 }
 
 .hero-copy {
@@ -567,6 +587,10 @@ code {
     min-height: auto;
   }
 
+  .guide-hero {
+    padding-top: 58px;
+  }
+
   .trust-row,
   .grid-3,
   .steps {
@@ -585,14 +609,14 @@ code {
   }
 
   .hero {
-    width: calc(100vw - 28px);
-    max-width: calc(100vw - 28px);
-    overflow: hidden;
+    width: min(1160px, calc(100% - 28px));
+    max-width: 100%;
+    overflow: visible;
   }
 
   .hero > div {
     width: 100%;
-    max-width: calc(100vw - 28px);
+    max-width: 100%;
   }
 
   h1 {
@@ -601,8 +625,32 @@ code {
     max-width: 12ch;
   }
 
+  .guide-hero h1 {
+    max-width: 10ch;
+    font-size: clamp(32px, 8.4vw, 38px);
+    line-height: 1.08;
+  }
+
   .lead {
     font-size: 24px;
+  }
+
+  .guide-hero .lead {
+    max-width: 30ch;
+    font-size: 19px;
+    line-height: 1.35;
+  }
+
+  .guide-hero .hero-copy {
+    max-width: 31ch;
+  }
+
+  .guide-hero {
+    display: block;
+  }
+
+  .guide-hero .hero-visual {
+    margin-top: 40px;
   }
 
   h1,
@@ -611,7 +659,7 @@ code {
   .narrow,
   .hero-visual {
     width: 100%;
-    max-width: calc(100vw - 28px);
+    max-width: 100%;
     overflow-wrap: break-word;
   }
 
