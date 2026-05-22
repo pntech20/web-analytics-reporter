@@ -1,0 +1,53 @@
+{
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "rewrites": [
+    {
+      "source": "/",
+      "destination": "/site/index.html"
+    },
+    {
+      "source": "/answers",
+      "destination": "/site/answers.html"
+    },
+    {
+      "source": "/styles.css",
+      "destination": "/site/styles.css"
+    },
+    {
+      "source": "/robots.txt",
+      "destination": "/site/robots.txt"
+    },
+    {
+      "source": "/sitemap.xml",
+      "destination": "/site/sitemap.xml"
+    },
+    {
+      "source": "/llms.txt",
+      "destination": "/site/llms.txt"
+    },
+    {
+      "source": "/assets/(.*)",
+      "destination": "/site/assets/$1"
+    }
+  ],
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
+        },
+        {
+          "key": "Content-Security-Policy",
+          "value": "default-src 'self'; img-src 'self' data:; style-src 'self'; script-src 'self' 'unsafe-inline'; base-uri 'self'; form-action 'none'; frame-ancestors 'none'"
+        }
+      ]
+    }
+  ]
+}
