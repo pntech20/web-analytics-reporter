@@ -1,36 +1,6 @@
 {
   "cleanUrls": true,
   "trailingSlash": false,
-  "rewrites": [
-    {
-      "source": "/",
-      "destination": "/site/index.html"
-    },
-    {
-      "source": "/answers",
-      "destination": "/site/answers/index.html"
-    },
-    {
-      "source": "/styles.css",
-      "destination": "/site/styles.css"
-    },
-    {
-      "source": "/robots.txt",
-      "destination": "/site/robots.txt"
-    },
-    {
-      "source": "/sitemap.xml",
-      "destination": "/site/sitemap.xml"
-    },
-    {
-      "source": "/llms.txt",
-      "destination": "/site/llms.txt"
-    },
-    {
-      "source": "/assets/(.*)",
-      "destination": "/site/assets/$1"
-    }
-  ],
   "headers": [
     {
       "source": "/(.*)",
