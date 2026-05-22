@@ -10,7 +10,7 @@ Reusable GA4 analytics reports for Telegram, Node.js cron jobs, and multi-site w
 
 Use Web Analytics Reporter when you want a daily website summary in Telegram without opening
 Google Analytics every morning. It is small, dependency-free, and designed to be embedded in
-serverless jobs.
+Node.js cron jobs, serverless functions, and scheduled workflows.
 
 Contact: [contact@analyticsreporter.xyz](mailto:contact@analyticsreporter.xyz)
 
@@ -27,6 +27,14 @@ Contact: [contact@analyticsreporter.xyz](mailto:contact@analyticsreporter.xyz)
 - TypeScript declarations for every public entry point.
 - Secure-by-default cron authorization with `CRON_SECRET`.
 - No runtime npm dependencies.
+
+## Guides
+
+- [GA4 Telegram report setup](https://analyticsreporter.xyz/ga4-telegram-report)
+- [Google Analytics Telegram bot](https://analyticsreporter.xyz/google-analytics-telegram-bot)
+- [GA4 report from GitHub Actions](https://analyticsreporter.xyz/ga4-github-actions-report)
+- [GA4 report from Vercel Cron](https://analyticsreporter.xyz/ga4-vercel-cron-report)
+- [Multi-site GA4 reporting](https://analyticsreporter.xyz/ga4-multi-site-reporting)
 
 ## Install
 
@@ -332,6 +340,7 @@ require("web-analytics-reporter/browser");
 ```sh
 npm test
 npm run check
+npm run site:check
 npm run pack:check
 ```
 

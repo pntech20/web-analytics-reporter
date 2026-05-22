@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>GA4 Vercel Cron Report - Daily Telegram Analytics</title>
+    <meta name="description" content="Create a GA4 Vercel Cron report that sends daily Telegram summaries. Add one protected API route and schedule it with Vercel Cron.">
+    <meta name="robots" content="index,follow,max-image-preview:large">
+    <link rel="canonical" href="https://analyticsreporter.xyz/ga4-vercel-cron-report">
+    <link rel="icon" href="/assets/logo.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="/styles.css">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="GA4 Vercel Cron Report">
+    <meta property="og:description" content="Send a daily GA4 Telegram summary from a protected Vercel Cron route.">
+    <meta property="og:url" content="https://analyticsreporter.xyz/ga4-vercel-cron-report">
+    <meta property="og:image" content="https://analyticsreporter.xyz/assets/og-image.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://analyticsreporter.xyz/"
+              },
+              {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "GA4 Vercel Cron Report",
+                "item": "https://analyticsreporter.xyz/ga4-vercel-cron-report"
+              }
+            ]
+          },
+          {
+            "@type": "TechArticle",
+            "headline": "Create a GA4 Vercel Cron report",
+            "description": "Use a Vercel API route and Vercel Cron to send daily GA4 summaries to Telegram."
+          },
+          {
+            "@type": "FAQPage",
+            "mainEntity": [
+              {
+                "@type": "Question",
+                "name": "Can Vercel Cron send Google Analytics reports?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Yes. Vercel Cron can request a protected API route that fetches GA4 data and sends a Telegram report."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "How should the Vercel Cron route be protected?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Use a long CRON_SECRET and require the secret through a query parameter or Authorization bearer token."
+                }
+              }
+            ]
+          }
+        ]
+      }
+    </script>
+  </head>
+  <body>
+    <header class="site-header">
+      <nav class="nav" aria-label="Main navigation">
+        <a class="brand" href="/">
+          <img src="/assets/logo.svg" alt="Web Analytics Reporter logo" width="38" height="38">
+          <span>Web Analytics Reporter</span>
+        </a>
+        <div class="nav-links">
+          <a href="/">Home</a>
+          <a href="/answers">Guides</a>
+          <a href="mailto:contact@analyticsreporter.xyz">Contact</a>
+          <a href="https://github.com/pntech20/web-analytics-reporter">GitHub</a>
+          <a class="nav-cta" href="https://www.npmjs.com/package/web-analytics-reporter">npm</a>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <section class="section hero">
+        <div>
+          <p class="eyebrow">Vercel Cron analytics</p>
+          <h1>Run GA4 Telegram reports from Vercel Cron.</h1>
+          <p class="lead">Add a protected API route to a Vercel project and let Cron call it every morning.</p>
+          <p class="hero-copy">This is the shortest path when your website already deploys to Vercel or you want a small serverless reporting endpoint.</p>
+        </div>
+        <figure class="hero-visual">
+          <img src="/assets/report-preview.svg" alt="Daily GA4 Telegram report scheduled with Vercel Cron" width="1200" height="760">
+        </figure>
+      </section>
+
+      <section class="section">
+        <div class="article-layout">
+          <article class="article-body">
+            <h2 id="route">Create the API route</h2>
+            <p>The Vercel adapter wraps <code>runDailySummary()</code> and handles request authorization, dry runs, site selection, and JSON responses.</p>
+            <div class="code-card">
+              <header>
+                <span>api/daily-summary.js</span>
+                <span>Vercel</span>
+              </header>
+              <pre><code>const {
+  createVercelDailySummaryHandler,
+  ga4Source,
+  telegramDestination
+} = require("web-analytics-reporter");
+
+module.exports = createVercelDailySummaryHandler({
+  secret: process.env.CRON_SECRET,
+  source: ga4Source({
+    clientEmail: process.env.GOOGLE_CLIENT_EMAIL,
+    privateKey: process.env.GOOGLE_PRIVATE_KEY
+  }),
+  destination: telegramDestination({
+    botToken: process.env.TELEGRAM_BOT_TOKEN
+  }),
+  sites: [{
+    id: "marketing",
+    name: "Marketing Site",
+    ga4PropertyId: process.env.GA4_PROPERTY_ID,
+    telegramChatId: process.env.TELEGRAM_CHAT_ID
+  }]
+});</code></pre>
+            </div>
+
+            <h2 id="cron">Add the Vercel Cron schedule</h2>
+            <div class="code-card">
+              <header>
+                <span>vercel.json</span>
+                <span>JSON</span>
+              </header>
+              <pre><code>{
+  "crons": [
+    {
+      "path": "/api/daily-summary",
+      "schedule": "0 8 * * *"
+    }
+  ]
+}</code></pre>
+            </div>
+
+            <h2 id="test">Test the route</h2>
+            <p>Preview the report without sending Telegram by opening the route with <code>dryRun=1</code>. Send a real report only after the message looks right.</p>
+            <div class="code-card">
+              <header>
+                <span>dry run</span>
+                <span>URL</span>
+              </header>
+              <pre><code>https://example.com/api/daily-summary?secret=&lt;CRON_SECRET&gt;&dryRun=1</code></pre>
+            </div>
+
+            <h2 id="cli">Use the initializer</h2>
+            <p>The CLI can create the starter Vercel route, <code>vercel.json</code>, and <code>.env.example</code> for you.</p>
+            <div class="code-card">
+              <header>
+                <span>terminal</span>
+                <span>npx</span>
+              </header>
+              <pre><code>npx web-analytics-reporter init --site-name "Marketing Site"</code></pre>
+            </div>
+
+            <h2 id="next">Related guides</h2>
+            <div class="guide-list">
+              <a class="guide-link" href="/ga4-github-actions-report">
+                <span><strong>GA4 GitHub Actions report</strong><span>Run the same report without Vercel.</span></span>
+                <em>Read</em>
+              </a>
+              <a class="guide-link" href="/ga4-multi-site-reporting">
+                <span><strong>Multi-site GA4 reporting</strong><span>Report many GA4 properties from one endpoint.</span></span>
+                <em>Read</em>
+              </a>
+            </div>
+          </article>
+
+          <aside class="toc" aria-label="Guide contents">
+            <strong>On this page</strong>
+            <a href="#route">API route</a>
+            <a href="#cron">Cron schedule</a>
+            <a href="#test">Test route</a>
+            <a href="#cli">Initializer</a>
+            <a href="#next">Related guides</a>
+          </aside>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <span>Web Analytics Reporter. MIT licensed.</span>
+        <div class="footer-links">
+          <a href="/answers">Answer guide</a>
+          <a href="mailto:contact@analyticsreporter.xyz">Contact</a>
+          <a href="https://github.com/pntech20/web-analytics-reporter">GitHub</a>
+          <a href="https://www.npmjs.com/package/web-analytics-reporter">npm</a>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

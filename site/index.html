@@ -64,7 +64,7 @@
             "name": "Web Analytics Reporter",
             "applicationCategory": "DeveloperApplication",
             "operatingSystem": "Node.js",
-            "softwareVersion": "0.3.1",
+            "softwareVersion": "0.3.2",
             "offers": {
               "@type": "Offer",
               "price": "0",
@@ -85,7 +85,7 @@
               },
               {
                 "@type": "Question",
-                "name": "Can one setup monitor multiple websites?",
+                "name": "Can one configuration monitor multiple websites?",
                 "acceptedAnswer": {
                   "@type": "Answer",
                   "text": "Yes. Add multiple site objects with separate GA4 property IDs and run one site by ID or all configured sites."
@@ -290,6 +290,35 @@ main();</code></pre>
             <h3>Does it support custom events?</h3>
             <p>Yes. You can report custom GA4 events like downloads, signups, support clicks, and guide clicks with custom labels per site.</p>
           </article>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-heading">
+          <h2>Step-by-step guides for high-intent setup questions.</h2>
+          <p>Each guide targets a specific way developers search for daily GA4 reports in Telegram.</p>
+        </div>
+        <div class="guide-list">
+          <a class="guide-link" href="/ga4-telegram-report">
+            <span><strong>GA4 Telegram report setup</strong><span>Send users, sessions, sources, countries, pages, and events to Telegram.</span></span>
+            <em>Guide</em>
+          </a>
+          <a class="guide-link" href="/google-analytics-telegram-bot">
+            <span><strong>Google Analytics Telegram bot</strong><span>Use your own Telegram bot token and GA4 service account.</span></span>
+            <em>Guide</em>
+          </a>
+          <a class="guide-link" href="/ga4-github-actions-report">
+            <span><strong>GA4 GitHub Actions report</strong><span>Schedule analytics reports without hosting a worker.</span></span>
+            <em>Guide</em>
+          </a>
+          <a class="guide-link" href="/ga4-vercel-cron-report">
+            <span><strong>GA4 Vercel Cron report</strong><span>Add a protected serverless route and let Vercel call it daily.</span></span>
+            <em>Guide</em>
+          </a>
+          <a class="guide-link" href="/ga4-multi-site-reporting">
+            <span><strong>Multi-site GA4 reporting</strong><span>Monitor several GA4 properties from one Node.js job.</span></span>
+            <em>Guide</em>
+          </a>
         </div>
       </section>
 

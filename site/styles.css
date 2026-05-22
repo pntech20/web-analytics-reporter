@@ -123,7 +123,8 @@ button:focus-visible {
 
 .hero > *,
 .split > *,
-.section-heading > * {
+.section-heading > *,
+.article-layout > * {
   min-width: 0;
 }
 
@@ -386,6 +387,116 @@ code {
   margin-top: 10px;
 }
 
+.guide-list {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 14px;
+}
+
+.guide-link {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 18px;
+  align-items: center;
+  padding: 20px 22px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--surface);
+}
+
+.guide-link strong {
+  display: block;
+  margin-bottom: 4px;
+  font-size: 20px;
+}
+
+.guide-link span {
+  color: var(--muted);
+}
+
+.guide-link em {
+  color: var(--accent);
+  font-style: normal;
+  font-weight: 850;
+}
+
+.article-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 0.72fr) minmax(260px, 0.28fr);
+  gap: 44px;
+  align-items: start;
+}
+
+.article-body {
+  max-width: 780px;
+}
+
+.article-body h2 {
+  margin: 54px 0 18px;
+  font-size: clamp(30px, 3.4vw, 44px);
+}
+
+.article-body h3 {
+  margin: 32px 0 10px;
+  font-size: 22px;
+}
+
+.article-body p,
+.article-body li {
+  color: var(--muted);
+  font-size: 18px;
+}
+
+.article-body a {
+  color: var(--accent-dark);
+  font-weight: 800;
+  text-decoration: underline;
+  text-decoration-color: rgba(15, 139, 141, 0.35);
+  text-underline-offset: 3px;
+}
+
+.article-body ul,
+.article-body ol {
+  padding-left: 24px;
+}
+
+.article-body li + li {
+  margin-top: 10px;
+}
+
+.toc {
+  position: sticky;
+  top: 104px;
+  padding: 18px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--surface);
+}
+
+.toc strong {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.toc a {
+  display: block;
+  color: var(--muted);
+  font-size: 14px;
+  font-weight: 750;
+}
+
+.toc a + a {
+  margin-top: 10px;
+}
+
+.inline-note {
+  padding: 18px 20px;
+  border: 1px solid var(--line);
+  border-left: 4px solid var(--accent);
+  border-radius: 8px;
+  background: var(--surface);
+}
+
 .cta-band {
   margin: 80px 0 30px;
   padding: 48px;
@@ -443,8 +554,13 @@ code {
 
   .hero,
   .section-heading,
-  .split {
+  .split,
+  .article-layout {
     grid-template-columns: 1fr;
+  }
+
+  .toc {
+    position: static;
   }
 
   .hero {
@@ -511,7 +627,8 @@ code {
   .grid-3,
   .steps,
   .answers,
-  .compare {
+  .compare,
+  .guide-link {
     grid-template-columns: 1fr;
   }
 

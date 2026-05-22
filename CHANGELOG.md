@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 
 This project follows semantic versioning after public release.
 
+## 0.3.2
+
+- Add focused SEO guide pages for GA4 Telegram reports, Telegram bot setup, GitHub Actions, Vercel Cron, and multi-site reporting.
+- Expand npm keywords for GA4, Telegram bot, cron, and website monitoring searches.
+- Add launch copy for GitHub, Hacker News, Reddit, Product Hunt, and social posts.
+
 ## 0.3.1
 
 - Update public website, package metadata, and canonical URLs to `analyticsreporter.xyz`.

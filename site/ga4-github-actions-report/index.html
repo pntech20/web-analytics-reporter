@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>GA4 GitHub Actions Report - Send Analytics to Telegram</title>
+    <meta name="description" content="Run a scheduled GA4 Telegram report from GitHub Actions. Use Web Analytics Reporter to send daily website analytics without hosting a worker.">
+    <meta name="robots" content="index,follow,max-image-preview:large">
+    <link rel="canonical" href="https://analyticsreporter.xyz/ga4-github-actions-report">
+    <link rel="icon" href="/assets/logo.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="/styles.css">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="GA4 GitHub Actions Report">
+    <meta property="og:description" content="Send a daily GA4 Telegram summary from a scheduled GitHub Actions workflow.">
+    <meta property="og:url" content="https://analyticsreporter.xyz/ga4-github-actions-report">
+    <meta property="og:image" content="https://analyticsreporter.xyz/assets/og-image.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://analyticsreporter.xyz/"
+              },
+              {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "GA4 GitHub Actions Report",
+                "item": "https://analyticsreporter.xyz/ga4-github-actions-report"
+              }
+            ]
+          },
+          {
+            "@type": "TechArticle",
+            "headline": "Run GA4 reports from GitHub Actions",
+            "description": "Schedule a GitHub Actions workflow that sends daily GA4 summaries to Telegram."
+          },
+          {
+            "@type": "FAQPage",
+            "mainEntity": [
+              {
+                "@type": "Question",
+                "name": "Can GitHub Actions send GA4 reports?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Yes. A scheduled GitHub Actions workflow can run a Node.js script that reads GA4 data and sends a Telegram report."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Do I need Vercel for Web Analytics Reporter?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "No. Vercel is optional. The runDailySummary helper works in GitHub Actions and other Node.js environments."
+                }
+              }
+            ]
+          }
+        ]
+      }
+    </script>
+  </head>
+  <body>
+    <header class="site-header">
+      <nav class="nav" aria-label="Main navigation">
+        <a class="brand" href="/">
+          <img src="/assets/logo.svg" alt="Web Analytics Reporter logo" width="38" height="38">
+          <span>Web Analytics Reporter</span>
+        </a>
+        <div class="nav-links">
+          <a href="/">Home</a>
+          <a href="/answers">Guides</a>
+          <a href="mailto:contact@analyticsreporter.xyz">Contact</a>
+          <a href="https://github.com/pntech20/web-analytics-reporter">GitHub</a>
+          <a class="nav-cta" href="https://www.npmjs.com/package/web-analytics-reporter">npm</a>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <section class="section hero">
+        <div>
+          <p class="eyebrow">GitHub Actions schedule</p>
+          <h1>Send GA4 reports from GitHub Actions.</h1>
+          <p class="lead">Use a scheduled workflow when you want a daily analytics report without deploying a worker, server, or serverless endpoint.</p>
+          <p class="hero-copy">GitHub Actions is a good fit for simple daily reporting jobs, especially for open source projects, docs sites, and small product sites.</p>
+        </div>
+        <figure class="hero-visual">
+          <img src="/assets/report-preview.svg" alt="GA4 report delivered to Telegram from GitHub Actions" width="1200" height="760">
+        </figure>
+      </section>
+
+      <section class="section">
+        <div class="article-layout">
+          <article class="article-body">
+            <h2 id="when">When GitHub Actions is the right scheduler</h2>
+            <p>Use GitHub Actions when the report is simple, runs once or twice per day, and does not need an always-on backend. Store secrets in the repository or organization secrets panel.</p>
+            <p>For multiple apps, create one repository for reporting automation or keep the workflow near each website source code.</p>
+
+            <h2 id="workflow">Workflow example</h2>
+            <div class="code-card">
+              <header>
+                <span>.github/workflows/daily-summary.yml</span>
+                <span>YAML</span>
+              </header>
+              <pre><code>name: Daily analytics report
+
+on:
+  schedule:
+    - cron: "0 8 * * *"
+  workflow_dispatch:
+
+jobs:
+  report:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: npm ci
+      - run: node examples/github-actions/daily-summary.js
+        env:
+          GA4_PROPERTY_ID: ${{ secrets.GA4_PROPERTY_ID }}
+          GOOGLE_CLIENT_EMAIL: ${{ secrets.GOOGLE_CLIENT_EMAIL }}
+          GOOGLE_PRIVATE_KEY: ${{ secrets.GOOGLE_PRIVATE_KEY }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}</code></pre>
+            </div>
+
+            <h2 id="secrets">Required secrets</h2>
+            <ul>
+              <li><code>GA4_PROPERTY_ID</code>: the numeric GA4 property ID.</li>
+              <li><code>GOOGLE_CLIENT_EMAIL</code>: the service account email.</li>
+              <li><code>GOOGLE_PRIVATE_KEY</code>: the private key from the service account JSON.</li>
+              <li><code>TELEGRAM_BOT_TOKEN</code>: the Telegram bot token.</li>
+              <li><code>TELEGRAM_CHAT_ID</code>: the chat, group, or channel ID.</li>
+            </ul>
+
+            <h2 id="dry-run">Test before sending</h2>
+            <p>Use the included GitHub Actions example with <code>dryRun</code> while configuring access. A dry run confirms that GA4 returns data and that the message text is readable.</p>
+            <p class="inline-note">GitHub schedules run in UTC. Pick the cron time that matches the report morning in your business time zone.</p>
+
+            <h2 id="next">Related guides</h2>
+            <div class="guide-list">
+              <a class="guide-link" href="/ga4-telegram-report">
+                <span><strong>GA4 Telegram report</strong><span>Understand the core GA4-to-Telegram workflow.</span></span>
+                <em>Read</em>
+              </a>
+              <a class="guide-link" href="/ga4-vercel-cron-report">
+                <span><strong>GA4 Vercel Cron report</strong><span>Use a serverless API route instead of a workflow.</span></span>
+                <em>Read</em>
+              </a>
+            </div>
+          </article>
+
+          <aside class="toc" aria-label="Guide contents">
+            <strong>On this page</strong>
+            <a href="#when">When to use it</a>
+            <a href="#workflow">Workflow</a>
+            <a href="#secrets">Secrets</a>
+            <a href="#dry-run">Dry run</a>
+            <a href="#next">Related guides</a>
+          </aside>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <span>Web Analytics Reporter. MIT licensed.</span>
+        <div class="footer-links">
+          <a href="/answers">Answer guide</a>
+          <a href="mailto:contact@analyticsreporter.xyz">Contact</a>
+          <a href="https://github.com/pntech20/web-analytics-reporter">GitHub</a>
+          <a href="https://www.npmjs.com/package/web-analytics-reporter">npm</a>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

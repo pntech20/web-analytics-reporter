@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Multi-Site GA4 Reporting - Telegram Website Summaries</title>
+    <meta name="description" content="Monitor multiple GA4 properties from one Node.js analytics reporter. Send one website or all website summaries to Telegram on a schedule.">
+    <meta name="robots" content="index,follow,max-image-preview:large">
+    <link rel="canonical" href="https://analyticsreporter.xyz/ga4-multi-site-reporting">
+    <link rel="icon" href="/assets/logo.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="/styles.css">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Multi-Site GA4 Reporting">
+    <meta property="og:description" content="Monitor multiple GA4 properties and send Telegram summaries from one Node.js job.">
+    <meta property="og:url" content="https://analyticsreporter.xyz/ga4-multi-site-reporting">
+    <meta property="og:image" content="https://analyticsreporter.xyz/assets/og-image.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://analyticsreporter.xyz/"
+              },
+              {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Multi-Site GA4 Reporting",
+                "item": "https://analyticsreporter.xyz/ga4-multi-site-reporting"
+              }
+            ]
+          },
+          {
+            "@type": "TechArticle",
+            "headline": "Multi-site GA4 reporting with Telegram",
+            "description": "Configure multiple GA4 property IDs and send one or all reports from the same job."
+          },
+          {
+            "@type": "FAQPage",
+            "mainEntity": [
+              {
+                "@type": "Question",
+                "name": "Can one job monitor multiple GA4 properties?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Yes. Configure multiple site objects with separate GA4 property IDs and send one site or every configured site."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Can each site send to a different Telegram chat?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Yes. Each site can use its own telegramChatId, or several sites can share the same reporting chat."
+                }
+              }
+            ]
+          }
+        ]
+      }
+    </script>
+  </head>
+  <body>
+    <header class="site-header">
+      <nav class="nav" aria-label="Main navigation">
+        <a class="brand" href="/">
+          <img src="/assets/logo.svg" alt="Web Analytics Reporter logo" width="38" height="38">
+          <span>Web Analytics Reporter</span>
+        </a>
+        <div class="nav-links">
+          <a href="/">Home</a>
+          <a href="/answers">Guides</a>
+          <a href="mailto:contact@analyticsreporter.xyz">Contact</a>
+          <a href="https://github.com/pntech20/web-analytics-reporter">GitHub</a>
+          <a class="nav-cta" href="https://www.npmjs.com/package/web-analytics-reporter">npm</a>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <section class="section hero">
+        <div>
+          <p class="eyebrow">Multi-site GA4 reporting</p>
+          <h1>Monitor many websites from one reporting job.</h1>
+          <p class="lead">Configure multiple GA4 property IDs and send every website summary to Telegram from one scheduler.</p>
+          <p class="hero-copy">This is useful for founders, agencies, and product teams that manage several websites and want a quick daily traffic pulse.</p>
+        </div>
+        <figure class="hero-visual">
+          <img src="/assets/report-preview.svg" alt="Multi-site GA4 analytics reporting workflow for Telegram" width="1200" height="760">
+        </figure>
+      </section>
+
+      <section class="section">
+        <div class="article-layout">
+          <article class="article-body">
+            <h2 id="model">How multi-site reporting works</h2>
+            <p>Each site is a small configuration object with an ID, display name, GA4 property ID, and Telegram chat destination. The runner can send all reports or only one selected site.</p>
+
+            <h2 id="config">Multi-site configuration</h2>
+            <div class="code-card">
+              <header>
+                <span>sites</span>
+                <span>JavaScript</span>
+              </header>
+              <pre><code>sites: [
+  {
+    id: "marketing",
+    name: "Marketing Site",
+    ga4PropertyId: "111111111",
+    telegramChatId: process.env.TELEGRAM_CHAT_ID
+  },
+  {
+    id: "docs",
+    name: "Docs",
+    ga4PropertyId: "222222222",
+    telegramChatId: process.env.DOCS_TELEGRAM_CHAT_ID
+  },
+  {
+    id: "app",
+    name: "App",
+    ga4PropertyId: "333333333",
+    telegramChatId: process.env.APP_TELEGRAM_CHAT_ID
+  }
+]</code></pre>
+            </div>
+
+            <h2 id="run">Run one site or all sites</h2>
+            <p>In a Vercel route, request <code>?site=all</code> to report every site or <code>?site=docs</code> to report only one. In a plain Node.js runner, pass the site ID through your own script arguments.</p>
+            <ul>
+              <li><code>site=all</code>: send every configured report.</li>
+              <li><code>site=marketing</code>: send only the marketing site report.</li>
+              <li>No site parameter: use the default configured behavior.</li>
+            </ul>
+
+            <h2 id="teams">Team usage patterns</h2>
+            <p>Small teams often send all websites to one private Telegram group. Agencies may prefer a separate chat per client or product. Both patterns work because each site can define its own chat ID.</p>
+            <p class="inline-note">Keep GA4 access narrow. Add the reporting service account only to the properties it needs to read.</p>
+
+            <h2 id="next">Related guides</h2>
+            <div class="guide-list">
+              <a class="guide-link" href="/ga4-telegram-report">
+                <span><strong>GA4 Telegram report</strong><span>Set up the first daily report.</span></span>
+                <em>Read</em>
+              </a>
+              <a class="guide-link" href="/google-analytics-telegram-bot">
+                <span><strong>Google Analytics Telegram bot</strong><span>Understand the bot delivery model.</span></span>
+                <em>Read</em>
+              </a>
+            </div>
+          </article>
+
+          <aside class="toc" aria-label="Guide contents">
+            <strong>On this page</strong>
+            <a href="#model">How it works</a>
+            <a href="#config">Configuration</a>
+            <a href="#run">Run reports</a>
+            <a href="#teams">Team patterns</a>
+            <a href="#next">Related guides</a>
+          </aside>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <span>Web Analytics Reporter. MIT licensed.</span>
+        <div class="footer-links">
+          <a href="/answers">Answer guide</a>
+          <a href="mailto:contact@analyticsreporter.xyz">Contact</a>
+          <a href="https://github.com/pntech20/web-analytics-reporter">GitHub</a>
+          <a href="https://www.npmjs.com/package/web-analytics-reporter">npm</a>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

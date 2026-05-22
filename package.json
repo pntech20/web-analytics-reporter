@@ -1,6 +1,6 @@
 {
   "name": "web-analytics-reporter",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "description": "Composable website analytics reports for GA4, Telegram, and Node.js cron jobs.",
   "main": "index.js",
   "types": "index.d.ts",
@@ -57,21 +57,31 @@
   ],
   "scripts": {
     "test": "node --test",
-    "check": "node --check *.js bin/*.js test/*.js examples/*/*.js examples/netlify/functions/*.js",
+    "check": "node --check *.js bin/*.js scripts/*.js test/*.js examples/*/*.js examples/netlify/functions/*.js",
+    "site:check": "node scripts/site-check.js",
     "pack:check": "npm pack --dry-run"
   },
   "keywords": [
     "analytics",
+    "analytics-report",
+    "daily-report",
     "ga4",
+    "ga4-report",
     "google-analytics",
+    "google-analytics-data-api",
+    "google-analytics-report",
     "telegram",
+    "telegram-bot",
     "reports",
     "cron",
+    "node-cron",
     "serverless",
+    "vercel-cron",
     "github-actions",
     "netlify",
     "express",
     "web-analytics",
+    "website-monitoring",
     "vercel"
   ],
   "engines": {
