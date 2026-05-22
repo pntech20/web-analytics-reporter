@@ -112,23 +112,45 @@
   {
     id: "marketing",
     name: "Marketing Site",
-    ga4PropertyId: "111111111",
-    telegramChatId: process.env.TELEGRAM_CHAT_ID
+    ga4PropertyId: process.env.MARKETING_GA4_PROPERTY_ID,
+    telegramChatId: process.env.MARKETING_TELEGRAM_CHAT_ID
   },
   {
     id: "docs",
     name: "Docs",
-    ga4PropertyId: "222222222",
+    ga4PropertyId: process.env.DOCS_GA4_PROPERTY_ID,
     telegramChatId: process.env.DOCS_TELEGRAM_CHAT_ID
   },
   {
     id: "app",
     name: "App",
-    ga4PropertyId: "333333333",
+    ga4PropertyId: process.env.APP_GA4_PROPERTY_ID,
     telegramChatId: process.env.APP_TELEGRAM_CHAT_ID
   }
 ]</code></pre>
             </div>
+
+            <h2 id="env">Environment variables</h2>
+            <p>For multiple sites, keep Google and Telegram credentials shared when possible, then give each site its own GA4 property ID and chat ID.</p>
+            <div class="code-card">
+              <header>
+                <span>.env</span>
+                <span>multi-site</span>
+              </header>
+              <pre><code>GOOGLE_CLIENT_EMAIL=ga4-report-reader@your-project.iam.gserviceaccount.com
+GOOGLE_PRIVATE_KEY="-----BEGIN PRIVATE KEY-----\n...\n-----END PRIVATE KEY-----\n"
+TELEGRAM_BOT_TOKEN=123456789:replace-with-bot-token
+
+MARKETING_GA4_PROPERTY_ID=111111111
+MARKETING_TELEGRAM_CHAT_ID=123456789
+
+DOCS_GA4_PROPERTY_ID=222222222
+DOCS_TELEGRAM_CHAT_ID=987654321
+
+APP_GA4_PROPERTY_ID=333333333
+APP_TELEGRAM_CHAT_ID=456789123</code></pre>
+            </div>
+            <p class="inline-note">These are numeric GA4 property IDs, not <code>G-XXXXXXXXXX</code> measurement IDs. The measurement ID is only needed on the website for browser tracking.</p>
 
             <h2 id="run">Run one site or all sites</h2>
             <p>In a Vercel route, request <code>?site=all</code> to report every site or <code>?site=docs</code> to report only one. In a plain Node.js runner, pass the site ID through your own script arguments.</p>
@@ -159,6 +181,7 @@
             <strong>On this page</strong>
             <a href="#model">How it works</a>
             <a href="#config">Configuration</a>
+            <a href="#env">Environment variables</a>
             <a href="#run">Run reports</a>
             <a href="#teams">Team patterns</a>
             <a href="#next">Related guides</a>

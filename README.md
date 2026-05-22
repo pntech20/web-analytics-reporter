@@ -140,7 +140,9 @@ Authorization: Bearer <CRON_SECRET>
 
 ## Environment Variables
 
-Copy `.env.example` and fill in your real values:
+Copy `.env.example` and fill in your real values.
+
+### Single-site setup
 
 ```text
 CRON_SECRET=
@@ -154,7 +156,32 @@ REPORT_SITE_NAME=
 REPORT_TIME_ZONE=
 ```
 
-Never commit these values. Store them in your deployment platform.
+### Variable reference
+
+| Variable | Required | Used for |
+| --- | --- | --- |
+| `GA4_PROPERTY_ID` | Yes | Numeric GA4 property ID that the report reads from. This is not the `G-XXXXXXXXXX` measurement ID. |
+| `GOOGLE_CLIENT_EMAIL` | Yes | Service account email from the Google Cloud JSON key. |
+| `GOOGLE_PRIVATE_KEY` | Yes | Service account private key. Escaped `\n` newlines are supported. |
+| `TELEGRAM_BOT_TOKEN` | Yes | Telegram bot token from BotFather. |
+| `TELEGRAM_CHAT_ID` | Yes | Telegram direct chat, group, or channel ID where the report is sent. |
+| `CRON_SECRET` | Endpoint only | Long random secret required by exposed HTTP handlers such as Vercel, Express, and Netlify. |
+| `REPORT_SITE_ID` | Optional | Stable internal ID used to select one site with `?site=<id>`. |
+| `REPORT_SITE_NAME` | Optional | Display name shown in the Telegram report. |
+| `REPORT_TIME_ZONE` | Optional | IANA time zone used for report dates, for example `UTC`, `Asia/Ho_Chi_Minh`, or `America/New_York`. |
+
+`GA4_PROPERTY_ID` is different from a GA4 measurement ID:
+
+```text
+GA4_PROPERTY_ID=537718780
+MEASUREMENT_ID=G-6NY9DKY6DW
+```
+
+Use the property ID for scheduled reports. Use the measurement ID only on the website
+when sending page views or browser events into GA4.
+
+Never commit these values. Store them in your deployment platform, GitHub Actions
+secrets, Railway variables, Netlify environment variables, or local secret manager.
 
 You can create the starter files at any time:
 
@@ -230,6 +257,42 @@ sites: [
     id: "docs",
     name: "Docs",
     ga4PropertyId: "222222222",
+    telegramChatId: process.env.DOCS_TELEGRAM_CHAT_ID
+  }
+]
+```
+
+The package loops through the `sites` array. For each site, it reads that site's
+`ga4PropertyId`, formats a separate report with that site's `name`, and sends it to
+that site's `telegramChatId`.
+
+Use one shared service account only if it has Viewer access to every GA4 property:
+
+```text
+GOOGLE_CLIENT_EMAIL=ga4-report-reader@your-project.iam.gserviceaccount.com
+GOOGLE_PRIVATE_KEY="-----BEGIN PRIVATE KEY-----\n...\n-----END PRIVATE KEY-----\n"
+
+MARKETING_GA4_PROPERTY_ID=111111111
+MARKETING_TELEGRAM_CHAT_ID=123456789
+
+DOCS_GA4_PROPERTY_ID=222222222
+DOCS_TELEGRAM_CHAT_ID=987654321
+```
+
+Then map those variables in code:
+
+```js
+sites: [
+  {
+    id: "marketing",
+    name: "Marketing Site",
+    ga4PropertyId: process.env.MARKETING_GA4_PROPERTY_ID,
+    telegramChatId: process.env.MARKETING_TELEGRAM_CHAT_ID
+  },
+  {
+    id: "docs",
+    name: "Docs",
+    ga4PropertyId: process.env.DOCS_GA4_PROPERTY_ID,
     telegramChatId: process.env.DOCS_TELEGRAM_CHAT_ID
   }
 ]
