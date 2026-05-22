@@ -18,7 +18,7 @@
   <text x="104" y="619" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="19" fill="#2f3a3d">1. United States - 812 users</text>
   <text x="104" y="653" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="19" fill="#2f3a3d">2. Vietnam - 214 users</text>
   <rect x="635" y="96" width="410" height="84" rx="18" fill="#ffffff" stroke="#d9e2df" stroke-width="3"/>
-  <text x="666" y="148" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="25" fill="#083f4d">vercel cron: 0 8 * * *</text>
+  <text x="666" y="148" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="25" fill="#083f4d">schedule: 0 8 * * *</text>
   <rect x="635" y="226" width="410" height="84" rx="18" fill="#ffffff" stroke="#d9e2df" stroke-width="3"/>
   <text x="666" y="278" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="25" fill="#083f4d">source: GA4 Data API</text>
   <rect x="635" y="356" width="410" height="84" rx="18" fill="#ffffff" stroke="#d9e2df" stroke-width="3"/>

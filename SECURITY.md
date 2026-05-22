@@ -5,7 +5,7 @@ Please do not open a public issue for suspected vulnerabilities.
 Report security issues by emailing:
 
 ```text
-pntech20@gmail.com
+contact@analyticsreporter.xyz
 ```
 
 ## Secret Handling

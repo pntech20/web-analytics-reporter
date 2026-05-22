@@ -4,15 +4,17 @@
 [![npm version](https://img.shields.io/npm/v/web-analytics-reporter.svg)](https://www.npmjs.com/package/web-analytics-reporter)
 [![npm downloads](https://img.shields.io/npm/dm/web-analytics-reporter.svg)](https://www.npmjs.com/package/web-analytics-reporter)
 
-[Website](https://web-analytics-reporter.vercel.app/) · [npm](https://www.npmjs.com/package/web-analytics-reporter) · [GitHub](https://github.com/pntech20/web-analytics-reporter) · [Answers](https://web-analytics-reporter.vercel.app/answers)
+[Website](https://analyticsreporter.xyz/) · [npm](https://www.npmjs.com/package/web-analytics-reporter) · [GitHub](https://github.com/pntech20/web-analytics-reporter) · [Answers](https://analyticsreporter.xyz/answers)
 
-Reusable GA4 analytics reports for Telegram, Vercel Cron, and multi-site website monitoring.
+Reusable GA4 analytics reports for Telegram, Node.js cron jobs, and multi-site website monitoring.
 
 Use Web Analytics Reporter when you want a daily website summary in Telegram without opening
 Google Analytics every morning. It is small, dependency-free, and designed to be embedded in
 serverless jobs.
 
-![Example Telegram-style daily analytics report with users, sessions, countries, sources, pages, and events](https://web-analytics-reporter.vercel.app/assets/report-preview.svg)
+Contact: [contact@analyticsreporter.xyz](mailto:contact@analyticsreporter.xyz)
+
+![Example Telegram-style daily analytics report with users, sessions, countries, sources, pages, and events](https://analyticsreporter.xyz/assets/report-preview.svg)
 
 ## Features
 
@@ -333,8 +335,8 @@ npm run check
 npm run pack:check
 ```
 
-The package is build-free CommonJS for now. That keeps deployment simple in Vercel API
-functions and other Node-based serverless runtimes.
+The package is build-free CommonJS for now. That keeps deployment simple in Node.js cron
+jobs, Vercel API functions, and other serverless runtimes.
 
 ## Roadmap
 

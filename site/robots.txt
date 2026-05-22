@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://web-analytics-reporter.vercel.app/sitemap.xml
+Sitemap: https://analyticsreporter.xyz/sitemap.xml

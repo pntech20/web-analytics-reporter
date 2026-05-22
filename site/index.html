@@ -3,52 +3,68 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Web Analytics Reporter - GA4 Telegram Reports from Vercel Cron</title>
-    <meta name="description" content="Send daily GA4 summaries to Telegram from Vercel Cron. Monitor users, sessions, countries, sources, pages, and custom events across multiple sites.">
+    <title>Web Analytics Reporter - GA4 Telegram Reports for Node Cron Jobs</title>
+    <meta name="description" content="Send daily GA4 summaries to Telegram from Vercel, GitHub Actions, Netlify, Railway, Express, or any Node.js cron job. Monitor multiple websites clearly.">
     <meta name="robots" content="index,follow,max-image-preview:large">
-    <link rel="canonical" href="https://web-analytics-reporter.vercel.app/">
+    <link rel="canonical" href="https://analyticsreporter.xyz/">
     <link rel="icon" href="/assets/logo.svg" type="image/svg+xml">
     <link rel="stylesheet" href="/styles.css">
     <meta property="og:type" content="website">
     <meta property="og:title" content="Web Analytics Reporter - GA4 Reports in Telegram">
-    <meta property="og:description" content="Send daily GA4 website summaries to Telegram from Vercel Cron. Built for multi-site analytics monitoring.">
-    <meta property="og:url" content="https://web-analytics-reporter.vercel.app/">
-    <meta property="og:image" content="https://web-analytics-reporter.vercel.app/assets/og-image.png">
+    <meta property="og:description" content="Send daily GA4 website summaries to Telegram from Node.js cron jobs. Built for multi-site analytics monitoring.">
+    <meta property="og:url" content="https://analyticsreporter.xyz/">
+    <meta property="og:image" content="https://analyticsreporter.xyz/assets/og-image.png">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Web Analytics Reporter">
-    <meta name="twitter:description" content="Daily GA4 reports in Telegram, scheduled from Vercel Cron.">
-    <meta name="twitter:image" content="https://web-analytics-reporter.vercel.app/assets/og-image.png">
+    <meta name="twitter:description" content="Daily GA4 reports in Telegram, scheduled from Node.js cron jobs.">
+    <meta name="twitter:image" content="https://analyticsreporter.xyz/assets/og-image.png">
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
         "@graph": [
           {
-            "@type": "WebSite",
-            "@id": "https://web-analytics-reporter.vercel.app/#website",
-            "url": "https://web-analytics-reporter.vercel.app/",
+            "@type": "Organization",
+            "@id": "https://analyticsreporter.xyz/#organization",
             "name": "Web Analytics Reporter",
-            "description": "Reusable GA4 analytics reports for Telegram, Vercel Cron, and multi-site website monitoring.",
-            "inLanguage": "en"
+            "url": "https://analyticsreporter.xyz/",
+            "email": "contact@analyticsreporter.xyz",
+            "contactPoint": {
+              "@type": "ContactPoint",
+              "email": "contact@analyticsreporter.xyz",
+              "contactType": "customer support",
+              "availableLanguage": "en"
+            }
+          },
+          {
+            "@type": "WebSite",
+            "@id": "https://analyticsreporter.xyz/#website",
+            "url": "https://analyticsreporter.xyz/",
+            "name": "Web Analytics Reporter",
+            "description": "Reusable GA4 analytics reports for Telegram, Node.js cron jobs, and multi-site website monitoring.",
+            "inLanguage": "en",
+            "publisher": {
+              "@id": "https://analyticsreporter.xyz/#organization"
+            }
           },
           {
             "@type": "SoftwareSourceCode",
-            "@id": "https://web-analytics-reporter.vercel.app/#source",
+            "@id": "https://analyticsreporter.xyz/#source",
             "name": "web-analytics-reporter",
             "codeRepository": "https://github.com/pntech20/web-analytics-reporter",
             "programmingLanguage": "JavaScript",
             "runtimePlatform": "Node.js 18+",
             "license": "https://github.com/pntech20/web-analytics-reporter/blob/main/LICENSE",
-            "description": "A dependency-free Node.js package for scheduled GA4 reports, Telegram delivery, and Vercel Cron jobs.",
-            "keywords": "GA4 Telegram report, Google Analytics Telegram bot, Vercel Cron analytics, website analytics reports",
+            "description": "A dependency-free Node.js package for scheduled GA4 reports, Telegram delivery, and cron jobs across serverless and Node.js platforms.",
+            "keywords": "GA4 Telegram report, Google Analytics Telegram bot, Node.js analytics reports, Vercel Cron analytics, GitHub Actions analytics, website analytics reports",
             "isAccessibleForFree": true
           },
           {
             "@type": "SoftwareApplication",
-            "@id": "https://web-analytics-reporter.vercel.app/#software",
+            "@id": "https://analyticsreporter.xyz/#software",
             "name": "Web Analytics Reporter",
             "applicationCategory": "DeveloperApplication",
             "operatingSystem": "Node.js",
-            "softwareVersion": "0.1.0",
+            "softwareVersion": "0.3.1",
             "offers": {
               "@type": "Offer",
               "price": "0",
@@ -57,22 +73,22 @@
           },
           {
             "@type": "FAQPage",
-            "@id": "https://web-analytics-reporter.vercel.app/#faq",
+            "@id": "https://analyticsreporter.xyz/#faq",
             "mainEntity": [
               {
                 "@type": "Question",
                 "name": "How do I send GA4 reports to Telegram?",
                 "acceptedAnswer": {
                   "@type": "Answer",
-                  "text": "Install web-analytics-reporter, create a Vercel API route, connect a GA4 service account, add your Telegram bot token and chat ID, and schedule the route with Vercel Cron."
+                  "text": "Install web-analytics-reporter, connect a GA4 service account, add your Telegram bot token and chat ID, and schedule the report from Vercel Cron, GitHub Actions, Netlify, Railway, Express, or another Node.js job."
                 }
               },
               {
                 "@type": "Question",
-                "name": "Can one setup report on multiple websites?",
+                "name": "Can one setup monitor multiple websites?",
                 "acceptedAnswer": {
                   "@type": "Answer",
-                  "text": "Yes. Add multiple site objects with separate GA4 property IDs and send one site with site=<id> or all configured sites with site=all."
+                  "text": "Yes. Add multiple site objects with separate GA4 property IDs and run one site by ID or all configured sites."
                 }
               },
               {
@@ -101,6 +117,7 @@
           <a href="#setup">Setup</a>
           <a href="#answers">Answers</a>
           <a href="/answers">Guides</a>
+          <a href="mailto:contact@analyticsreporter.xyz">Contact</a>
           <a href="https://github.com/pntech20/web-analytics-reporter">GitHub</a>
           <a class="nav-cta" href="https://www.npmjs.com/package/web-analytics-reporter">npm</a>
         </div>
@@ -111,9 +128,9 @@
       <section class="section hero">
         <div>
           <p class="eyebrow">GA4 Telegram reports</p>
-          <h1>GA4 reports in Telegram. Scheduled from Vercel Cron.</h1>
+          <h1>GA4 reports in Telegram. Scheduled from any Node.js job.</h1>
           <p class="lead">Monitor website traffic, countries, sources, pages, and custom events across one site or many without opening Google Analytics every morning.</p>
-          <p class="hero-copy">Web Analytics Reporter is a small Node.js package for teams that want a clear daily analytics summary in Telegram using GA4, a service account, and a serverless cron job.</p>
+          <p class="hero-copy">Web Analytics Reporter is a small Node.js package for teams that want a clear daily analytics summary in Telegram using GA4, a service account, and the scheduler they already use.</p>
           <div class="actions">
             <a class="button primary" href="https://www.npmjs.com/package/web-analytics-reporter">Install from npm</a>
             <a class="button" href="https://github.com/pntech20/web-analytics-reporter">View on GitHub</a>
@@ -121,7 +138,7 @@
           <code class="install">npm install web-analytics-reporter</code>
         </div>
         <figure class="hero-visual">
-          <img src="/assets/report-preview.svg" alt="Preview of a daily GA4 report sent to Telegram from Vercel Cron" width="1200" height="760">
+          <img src="/assets/report-preview.svg" alt="Preview of a daily GA4 report sent to Telegram from a scheduled Node.js job" width="1200" height="760">
         </figure>
       </section>
 
@@ -132,8 +149,8 @@
             <span>No runtime npm dependencies.</span>
           </div>
           <div class="trust-item">
-            <strong>Node 18+</strong>
-            <span>Works in modern serverless runtimes.</span>
+            <strong>Node.js 18+</strong>
+            <span>Works in cron jobs, serverless functions, and app servers.</span>
           </div>
           <div class="trust-item">
             <strong>Multi-site</strong>
@@ -169,8 +186,8 @@
             <p>Send reports to a direct chat, private group, or team channel through a Telegram bot.</p>
           </article>
           <article class="feature-card">
-            <h3>Vercel Cron ready</h3>
-            <p>Create one serverless API route, protect it with a secret, and schedule it with Vercel Cron.</p>
+            <h3>Scheduler ready</h3>
+            <p>Run from Vercel Cron, GitHub Actions, Netlify, Railway, Express, or a plain Node.js cron job.</p>
           </article>
           <article class="feature-card">
             <h3>Type declarations</h3>
@@ -182,7 +199,7 @@
       <section id="setup" class="section">
         <div class="section-heading">
           <h2>Set up a daily analytics report in four steps.</h2>
-          <p>Use GA4 as the source, Telegram as the destination, and Vercel Cron as the scheduler.</p>
+          <p>Use GA4 as the source, Telegram as the destination, and any Node.js scheduler as the runner.</p>
         </div>
         <div class="steps">
           <article class="step">
@@ -198,12 +215,12 @@
           <article class="step">
             <span class="step-number">3</span>
             <h3>Add API route</h3>
-            <p>Configure <code>ga4Source</code>, <code>telegramDestination</code>, one or more sites, and a long <code>CRON_SECRET</code>.</p>
+            <p>Configure <code>ga4Source</code>, <code>telegramDestination</code>, one or more sites, and a long <code>CRON_SECRET</code> when exposing an endpoint.</p>
           </article>
           <article class="step">
             <span class="step-number">4</span>
             <h3>Schedule report</h3>
-            <p>Add a Vercel Cron schedule, test with `dryRun=1`, then let the report send daily.</p>
+            <p>Run with your scheduler, test with <code>dryRun</code>, then let the report send daily.</p>
           </article>
         </div>
       </section>
@@ -212,38 +229,41 @@
         <div class="split">
           <div>
             <p class="eyebrow">Example</p>
-            <h2>One route, many analytics reports.</h2>
-            <p class="narrow">Configure separate site IDs and GA4 property IDs, then send one report or every report from the same endpoint.</p>
+            <h2>One runner, many analytics reports.</h2>
+            <p class="narrow">Configure separate site IDs and GA4 property IDs, then send one report or every configured report from the same job.</p>
           </div>
           <div class="code-card">
             <header>
-              <span>api/daily-summary.js</span>
+              <span>daily-summary.js</span>
               <span>Node.js</span>
             </header>
             <pre><code>const {
-  createVercelDailySummaryHandler,
   ga4Source,
+  runDailySummary,
   telegramDestination
 } = require("web-analytics-reporter");
 
-module.exports = createVercelDailySummaryHandler({
-  secret: process.env.CRON_SECRET,
-  source: ga4Source({
-    clientEmail: process.env.GOOGLE_CLIENT_EMAIL,
-    privateKey: process.env.GOOGLE_PRIVATE_KEY
-  }),
-  destination: telegramDestination({
-    botToken: process.env.TELEGRAM_BOT_TOKEN
-  }),
-  sites: [
-    {
-      id: "marketing",
-      name: "Marketing Site",
-      ga4PropertyId: "123456789",
-      telegramChatId: process.env.TELEGRAM_CHAT_ID
-    }
-  ]
-});</code></pre>
+async function main() {
+  await runDailySummary({
+    source: ga4Source({
+      clientEmail: process.env.GOOGLE_CLIENT_EMAIL,
+      privateKey: process.env.GOOGLE_PRIVATE_KEY
+    }),
+    destination: telegramDestination({
+      botToken: process.env.TELEGRAM_BOT_TOKEN
+    }),
+    sites: [
+      {
+        id: "marketing",
+        name: "Marketing Site",
+        ga4PropertyId: "123456789",
+        telegramChatId: process.env.TELEGRAM_CHAT_ID
+      }
+    ]
+  });
+}
+
+main();</code></pre>
           </div>
         </div>
       </section>
@@ -256,11 +276,11 @@ module.exports = createVercelDailySummaryHandler({
         <div class="answers">
           <article class="answer-card">
             <h3>How do I send GA4 reports to Telegram?</h3>
-            <p>Install <code>web-analytics-reporter</code>, create a protected Vercel API route, connect GA4 with a service account, add a Telegram bot token and chat ID, and schedule the route with Vercel Cron.</p>
+            <p>Install <code>web-analytics-reporter</code>, connect GA4 with a service account, add a Telegram bot token and chat ID, and schedule the report with your preferred Node.js runner.</p>
           </article>
           <article class="answer-card">
             <h3>Can I monitor multiple websites?</h3>
-            <p>Yes. Add multiple site configs with separate GA4 property IDs. Use <code>site=all</code> for every report or <code>site=marketing</code> for one site.</p>
+            <p>Yes. Add multiple site configs with separate GA4 property IDs. Run every report or select a single site ID such as <code>marketing</code>.</p>
           </article>
           <article class="answer-card">
             <h3>Is this a replacement for GA4?</h3>
@@ -303,6 +323,7 @@ module.exports = createVercelDailySummaryHandler({
           <p class="eyebrow">Open source package</p>
           <h2>Start with a readable GA4 report tomorrow morning.</h2>
           <p>Install the package, add one API route, test with <code>dryRun=1</code>, then schedule your daily website analytics summary.</p>
+          <p>Questions or feedback: <a href="mailto:contact@analyticsreporter.xyz">contact@analyticsreporter.xyz</a></p>
           <div class="actions">
             <a class="button primary" href="https://www.npmjs.com/package/web-analytics-reporter">Install package</a>
             <a class="button" href="https://github.com/pntech20/web-analytics-reporter">Read docs</a>
@@ -316,6 +337,7 @@ module.exports = createVercelDailySummaryHandler({
         <span>Web Analytics Reporter. MIT licensed.</span>
         <div class="footer-links">
           <a href="/answers">Answer guide</a>
+          <a href="mailto:contact@analyticsreporter.xyz">Contact</a>
           <a href="https://github.com/pntech20/web-analytics-reporter">GitHub</a>
           <a href="https://www.npmjs.com/package/web-analytics-reporter">npm</a>
         </div>

@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 
 This project follows semantic versioning after public release.
 
+## 0.3.1
+
+- Update public website, package metadata, and canonical URLs to `analyticsreporter.xyz`.
+- Add public contact email.
+- Refresh landing-page copy for platform-neutral Node.js reporting.
+
 ## 0.3.0
 
 - Add platform-neutral `runDailySummary()` helper.

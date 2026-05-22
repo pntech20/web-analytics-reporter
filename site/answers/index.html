@@ -4,16 +4,16 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>GA4 Telegram Report Guide - Web Analytics Reporter</title>
-    <meta name="description" content="Answers for setting up GA4 Telegram reports, Vercel Cron analytics summaries, service account access, custom events, and multi-site website monitoring.">
+    <meta name="description" content="Answers for setting up GA4 Telegram reports from Node.js cron jobs, service account access, custom events, and multi-site website monitoring.">
     <meta name="robots" content="index,follow,max-image-preview:large">
-    <link rel="canonical" href="https://web-analytics-reporter.vercel.app/answers">
+    <link rel="canonical" href="https://analyticsreporter.xyz/answers">
     <link rel="icon" href="/assets/logo.svg" type="image/svg+xml">
     <link rel="stylesheet" href="/styles.css">
     <meta property="og:type" content="article">
     <meta property="og:title" content="GA4 Telegram Report Guide">
-    <meta property="og:description" content="How to send GA4 analytics summaries to Telegram from Vercel Cron.">
-    <meta property="og:url" content="https://web-analytics-reporter.vercel.app/answers">
-    <meta property="og:image" content="https://web-analytics-reporter.vercel.app/assets/og-image.png">
+    <meta property="og:description" content="How to send GA4 analytics summaries to Telegram from Node.js scheduled jobs.">
+    <meta property="og:url" content="https://analyticsreporter.xyz/answers">
+    <meta property="og:image" content="https://analyticsreporter.xyz/assets/og-image.png">
     <meta name="twitter:card" content="summary_large_image">
     <script type="application/ld+json">
       {
@@ -26,13 +26,13 @@
                 "@type": "ListItem",
                 "position": 1,
                 "name": "Home",
-                "item": "https://web-analytics-reporter.vercel.app/"
+                "item": "https://analyticsreporter.xyz/"
               },
               {
                 "@type": "ListItem",
                 "position": 2,
                 "name": "Answers",
-                "item": "https://web-analytics-reporter.vercel.app/answers"
+                "item": "https://analyticsreporter.xyz/answers"
               }
             ]
           },
@@ -44,7 +44,7 @@
                 "name": "What is the easiest way to send GA4 reports to Telegram?",
                 "acceptedAnswer": {
                   "@type": "Answer",
-                  "text": "The easiest way is to use a scheduled serverless route. Web Analytics Reporter reads GA4 through the Google Analytics Data API, formats yesterday's metrics, and sends the summary through a Telegram bot."
+                  "text": "The easiest way is to use a scheduled Node.js job. Web Analytics Reporter reads GA4 through the Google Analytics Data API, formats yesterday's metrics, and sends the summary through a Telegram bot."
                 }
               },
               {
@@ -57,10 +57,10 @@
               },
               {
                 "@type": "Question",
-                "name": "Can Vercel Cron run a GA4 Telegram bot?",
+                "name": "Can I run a GA4 Telegram report outside Vercel?",
                 "acceptedAnswer": {
                   "@type": "Answer",
-                  "text": "Yes. Vercel Cron can request a protected API route on a schedule. That route can fetch GA4 data and send a Telegram message."
+                  "text": "Yes. Web Analytics Reporter can run from plain Node cron, GitHub Actions, Netlify Functions, Railway, Express, Vercel Cron, or another Node.js scheduler."
                 }
               }
             ]
@@ -78,6 +78,7 @@
         </a>
         <div class="nav-links">
           <a href="/">Home</a>
+          <a href="mailto:contact@analyticsreporter.xyz">Contact</a>
           <a href="https://github.com/pntech20/web-analytics-reporter">GitHub</a>
           <a class="nav-cta" href="https://www.npmjs.com/package/web-analytics-reporter">npm</a>
         </div>
@@ -89,8 +90,8 @@
         <div>
           <p class="eyebrow">Answer guide</p>
           <h1>How to send GA4 reports to Telegram.</h1>
-          <p class="lead">Use GA4 as the source, Vercel Cron as the scheduler, and Telegram as the destination for a daily website analytics summary.</p>
-          <p class="hero-copy">This page answers the practical setup questions people ask when they want automated Google Analytics reports without building a custom bot from scratch.</p>
+          <p class="lead">Use GA4 as the source, any Node.js scheduler as the runner, and Telegram as the destination for a daily website analytics summary.</p>
+          <p class="hero-copy">This page answers the practical setup questions people ask when they want automated Google Analytics reports without building a custom reporting service from scratch.</p>
         </div>
         <figure class="hero-visual">
           <img src="/assets/report-preview.svg" alt="GA4 Telegram report workflow preview" width="1200" height="760">
@@ -101,15 +102,15 @@
         <div class="answers">
           <article class="answer-card">
             <h3>What is the easiest way to send GA4 reports to Telegram?</h3>
-            <p>The easiest way is a scheduled serverless route. Web Analytics Reporter reads GA4 through the Google Analytics Data API, formats yesterday's metrics, and sends the summary through a Telegram bot.</p>
+            <p>The easiest way is a scheduled Node.js job. Web Analytics Reporter reads GA4 through the Google Analytics Data API, formats yesterday's metrics, and sends the summary through a Telegram bot.</p>
           </article>
           <article class="answer-card">
             <h3>What metrics can the report include?</h3>
             <p>The default report includes active users, sessions, page views, top countries, top sources, top pages, and selected custom events.</p>
           </article>
           <article class="answer-card">
-            <h3>Can Vercel Cron run a GA4 Telegram bot?</h3>
-            <p>Yes. Vercel Cron can request a protected API route on a schedule. That route fetches GA4 data and sends a Telegram message.</p>
+            <h3>Can I run it without Vercel?</h3>
+            <p>Yes. Run it from plain Node cron, GitHub Actions, Netlify Functions, Railway, Express, Vercel Cron, or another Node.js scheduler.</p>
           </article>
           <article class="answer-card">
             <h3>Do I need Google Tag Manager?</h3>
@@ -145,6 +146,10 @@
             <p>Run scheduled analytics reports from a Vercel serverless function.</p>
           </article>
           <article class="feature-card">
+            <h3>GitHub Actions analytics report</h3>
+            <p>Use a scheduled GitHub Actions workflow to send the report without hosting a separate app.</p>
+          </article>
+          <article class="feature-card">
             <h3>Daily website analytics summary</h3>
             <p>Summarize yesterday's traffic, sources, countries, pages, and events.</p>
           </article>
@@ -153,8 +158,8 @@
             <p>Report one website or all configured websites from the same endpoint.</p>
           </article>
           <article class="feature-card">
-            <h3>Serverless analytics reports</h3>
-            <p>Keep reporting code close to your app with no separate worker server to manage.</p>
+            <h3>Node.js analytics reports</h3>
+            <p>Keep reporting code close to your app with no separate hosted dashboard to manage.</p>
           </article>
         </div>
       </section>
@@ -164,6 +169,7 @@
           <p class="eyebrow">Next step</p>
           <h2>Install the package and test with dryRun.</h2>
           <p>Use <code>dryRun=1</code> first so you can verify the GA4 response and final message before sending anything to Telegram.</p>
+          <p>Questions or feedback: <a href="mailto:contact@analyticsreporter.xyz">contact@analyticsreporter.xyz</a></p>
           <div class="actions">
             <a class="button primary" href="https://www.npmjs.com/package/web-analytics-reporter">Install from npm</a>
             <a class="button" href="https://github.com/pntech20/web-analytics-reporter">Open GitHub</a>
@@ -177,6 +183,7 @@
         <span>Web Analytics Reporter. MIT licensed.</span>
         <div class="footer-links">
           <a href="/">Home</a>
+          <a href="mailto:contact@analyticsreporter.xyz">Contact</a>
           <a href="https://github.com/pntech20/web-analytics-reporter">GitHub</a>
           <a href="https://www.npmjs.com/package/web-analytics-reporter">npm</a>
         </div>

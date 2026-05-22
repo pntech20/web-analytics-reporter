@@ -2,15 +2,16 @@
 
 Web Analytics Reporter is an open source Node.js package for scheduled website analytics reports.
 
-Primary URL: https://web-analytics-reporter.vercel.app/
+Primary URL: https://analyticsreporter.xyz/
 Repository: https://github.com/pntech20/web-analytics-reporter
 npm package: https://www.npmjs.com/package/web-analytics-reporter
+Contact: contact@analyticsreporter.xyz
 
 ## What it does
 
 - Reads GA4 reporting data through the Google Analytics Data API.
 - Sends daily summaries to Telegram.
-- Runs well from Vercel Cron and serverless API routes.
+- Runs from Node.js cron jobs, GitHub Actions, Netlify Functions, Railway, Express, Vercel Cron, and serverless API routes.
 - Supports multiple websites from one endpoint.
 - Reports users, sessions, page views, countries, sources, pages, and custom events.
 
@@ -18,5 +19,7 @@ npm package: https://www.npmjs.com/package/web-analytics-reporter
 
 - How do I send GA4 reports to Telegram?
 - How do I run Google Analytics reports from Vercel Cron?
+- How do I run Google Analytics reports from GitHub Actions?
+- How do I run GA4 reports from Node.js cron jobs?
 - How do I monitor multiple GA4 properties from one endpoint?
 - How do I send daily website analytics summaries to a team chat?
