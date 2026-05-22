@@ -53,6 +53,8 @@ Relevant page: https://analyticsreporter.xyz/ga4-report-npm-package
 
 First audit whether GA4 tracking already exists. Search for gtag.js, Google Tag Manager, Google Analytics scripts, GA4 measurement IDs, `gtag("event")`, `dataLayer.push`, analytics wrappers, and click/form tracking helpers. If tracking already exists, do not add duplicate scripts; add only the backend reporting job and map existing GA4 event names with `eventLabels`. If tracking does not exist, add minimal GA4 page view tracking and only a small set of useful actions before adding the backend report.
 
+Required backend environment variables are `GA4_PROPERTY_ID`, `GOOGLE_CLIENT_EMAIL`, `GOOGLE_PRIVATE_KEY`, `TELEGRAM_BOT_TOKEN`, and `TELEGRAM_CHAT_ID`. `REPORT_SITE_NAME` and `REPORT_TIME_ZONE` are optional display settings; infer them from app or site context when possible and fall back to `Website` and `UTC`.
+
 Relevant page: https://analyticsreporter.xyz/ga4-report-npm-package
 
 ### How do I know which events to report?

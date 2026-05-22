@@ -168,7 +168,23 @@ If GA4 tracking does not exist:
 
 Package docs:
 https://www.npmjs.com/package/web-analytics-reporter
-https://analyticsreporter.xyz/llms-full.txt</code></pre>
+https://analyticsreporter.xyz/llms-full.txt
+
+Required backend env vars:
+GA4_PROPERTY_ID=&lt;numeric GA4 property id&gt;
+GOOGLE_CLIENT_EMAIL=&lt;service account email&gt;
+GOOGLE_PRIVATE_KEY=&lt;service account private key&gt;
+TELEGRAM_BOT_TOKEN=&lt;telegram bot token&gt;
+TELEGRAM_CHAT_ID=&lt;telegram chat id&gt;
+
+Optional display env vars:
+REPORT_SITE_NAME=&lt;site name&gt;
+REPORT_TIME_ZONE=&lt;IANA timezone&gt;
+
+If REPORT_SITE_NAME is missing, infer a readable name from the app name, package
+name, site title, or domain. Fall back to "Website".
+If REPORT_TIME_ZONE is missing, infer it from existing app, business, user, or
+deployment timezone settings. Fall back to "UTC".</code></pre>
             </div>
 
             <h2 id="events">Which events should it track?</h2>

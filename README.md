@@ -454,8 +454,15 @@ GOOGLE_CLIENT_EMAIL=<service account email>
 GOOGLE_PRIVATE_KEY=<service account private key>
 TELEGRAM_BOT_TOKEN=<telegram bot token>
 TELEGRAM_CHAT_ID=<telegram chat id>
+
+Optional display env vars:
 REPORT_SITE_NAME=<site name>
 REPORT_TIME_ZONE=<IANA timezone>
+
+If REPORT_SITE_NAME is missing, infer a readable name from the app name, package
+name, site title, or domain. Fall back to "Website".
+If REPORT_TIME_ZONE is missing, infer it from existing app, business, user, or
+deployment timezone settings. Fall back to "UTC".
 
 Protect public report endpoints with CRON_SECRET.
 Never expose Google private keys or Telegram bot tokens to frontend code.

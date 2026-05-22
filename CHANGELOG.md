@@ -11,6 +11,7 @@ This project follows semantic versioning after public release.
 - Document environment variables with required/optional status, multi-site naming patterns, and the difference between GA4 property IDs and measurement IDs.
 - Clarify that the optional browser helper uses a GA4 measurement ID, while backend Telegram reports use the numeric GA4 property ID.
 - Add an AI integration prompt and event audit guidance for existing website integrations.
+- Clarify fallback behavior for optional `REPORT_SITE_NAME` and `REPORT_TIME_ZONE` values in the AI integration prompt.
 - Add Google Analytics Admin API fallback instructions for service account emails rejected by the GA4 UI.
 - Add `llms-full.txt` and expand answer-engine context for common GA4 Telegram reporting questions.
 - Add static site checks for broken internal links.
