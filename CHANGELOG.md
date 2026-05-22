@@ -13,7 +13,7 @@ This project follows semantic versioning after public release.
 - Add Google Analytics Admin API fallback instructions for service account emails rejected by the GA4 UI.
 - Add `llms-full.txt` and expand answer-engine context for common GA4 Telegram reporting questions.
 - Add static site checks for broken internal links.
-- Reduce guide-page hero heading sizes for cleaner desktop and mobile reading.
+- Reduce landing and guide-page hero heading sizes for cleaner desktop and mobile reading.
 - Add copy buttons to static site code snippets.
 - Add launch copy for GitHub, Hacker News, Reddit, Product Hunt, and social posts.
 

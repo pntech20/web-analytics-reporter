@@ -113,19 +113,19 @@ button:focus-visible {
 
 .hero {
   display: grid;
-  grid-template-columns: minmax(0, 0.95fr) minmax(420px, 1.05fr);
-  gap: 58px;
+  grid-template-columns: minmax(0, 1fr) minmax(360px, 0.95fr);
+  gap: 48px;
   align-items: center;
   min-height: calc(100vh - 76px);
-  padding-top: 64px;
+  padding-top: 56px;
   padding-bottom: 54px;
 }
 
 .guide-hero {
-  grid-template-columns: minmax(0, 0.86fr) minmax(360px, 0.8fr);
-  gap: 48px;
+  grid-template-columns: minmax(0, 0.95fr) minmax(320px, 0.85fr);
+  gap: 42px;
   min-height: auto;
-  padding-top: 78px;
+  padding-top: 68px;
   padding-bottom: 64px;
 }
 
@@ -153,38 +153,42 @@ p {
 }
 
 h1 {
-  max-width: 780px;
+  max-width: 720px;
   margin-bottom: 24px;
-  font-size: clamp(52px, 7vw, 94px);
-  line-height: 0.95;
+  font-size: clamp(42px, 4.2vw, 60px);
+  line-height: 1.06;
   letter-spacing: 0;
-  overflow-wrap: anywhere;
+  overflow-wrap: normal;
+  text-wrap: balance;
 }
 
 .guide-hero h1 {
-  max-width: 700px;
-  font-size: clamp(40px, 4.6vw, 60px);
-  line-height: 1.05;
+  max-width: 620px;
+  font-size: clamp(34px, 3.5vw, 48px);
+  line-height: 1.1;
 }
 
 .lead {
-  max-width: 720px;
+  max-width: 640px;
   margin-bottom: 30px;
   color: #2d3b40;
-  font-size: clamp(22px, 3vw, 34px);
-  line-height: 1.18;
+  font-size: clamp(19px, 1.8vw, 24px);
+  line-height: 1.34;
   letter-spacing: 0;
+  text-wrap: pretty;
 }
 
 .guide-hero .lead {
-  max-width: 680px;
-  font-size: clamp(20px, 2.1vw, 27px);
-  line-height: 1.24;
+  max-width: 620px;
+  font-size: clamp(18px, 1.7vw, 23px);
+  line-height: 1.32;
 }
 
 .hero-copy {
+  max-width: 650px;
   color: var(--muted);
   font-size: 18px;
+  line-height: 1.6;
 }
 
 .actions {
@@ -647,29 +651,29 @@ code {
   }
 
   h1 {
-    font-size: clamp(40px, 11.6vw, 46px);
-    line-height: 1.02;
-    max-width: 12ch;
+    font-size: clamp(34px, 9.5vw, 42px);
+    line-height: 1.08;
+    max-width: 14ch;
   }
 
   .guide-hero h1 {
-    max-width: 10ch;
-    font-size: clamp(32px, 8.4vw, 38px);
-    line-height: 1.08;
+    max-width: 14ch;
+    font-size: clamp(30px, 8vw, 36px);
+    line-height: 1.1;
   }
 
   .lead {
-    font-size: 24px;
+    font-size: 21px;
   }
 
   .guide-hero .lead {
-    max-width: 30ch;
-    font-size: 19px;
+    max-width: 34ch;
+    font-size: 18px;
     line-height: 1.35;
   }
 
   .guide-hero .hero-copy {
-    max-width: 31ch;
+    max-width: 34ch;
   }
 
   .guide-hero {
