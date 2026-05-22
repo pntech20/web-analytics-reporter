@@ -138,6 +138,65 @@ You can also authorize with an HTTP header:
 Authorization: Bearer <CRON_SECRET>
 ```
 
+## Integrating Into an Existing Site
+
+Package link: <https://www.npmjs.com/package/web-analytics-reporter>
+
+Use this prompt with an AI coding agent when adding the package to an unfamiliar
+website codebase:
+
+```text
+I want to integrate web-analytics-reporter into this website.
+
+First, inspect the codebase and determine whether GA4 tracking is already installed.
+Check for gtag.js, Google Tag Manager, Google Analytics scripts, a GA4 measurement ID
+like G-XXXXXXXXXX, existing analytics utilities, and existing event tracking calls.
+
+If GA4 tracking already exists:
+- Do not add duplicate GA4 scripts.
+- Keep the existing frontend tracking.
+- Audit existing events by searching for gtag("event"), dataLayer.push, analytics
+  wrappers, and click/form tracking utilities.
+- Add only the backend daily report integration with web-analytics-reporter.
+- Use GA4_PROPERTY_ID as the numeric GA4 property ID for reports.
+- Do not confuse GA4_PROPERTY_ID with the frontend measurement ID.
+
+If GA4 tracking does not exist:
+- Add minimal GA4 frontend tracking using the site's existing conventions.
+- Use the GA4 measurement ID only for frontend tracking.
+- Track only important product or business actions, not every click.
+- Then add the backend daily report integration.
+
+Install from npm:
+https://www.npmjs.com/package/web-analytics-reporter
+
+Required backend env vars:
+GA4_PROPERTY_ID=<numeric GA4 property id>
+GOOGLE_CLIENT_EMAIL=<service account email>
+GOOGLE_PRIVATE_KEY=<service account private key>
+TELEGRAM_BOT_TOKEN=<telegram bot token>
+TELEGRAM_CHAT_ID=<telegram chat id>
+
+Optional display env vars:
+REPORT_SITE_NAME=<site name>
+REPORT_TIME_ZONE=<IANA timezone>
+
+If REPORT_SITE_NAME is missing, infer a readable name from the app name, package
+name, site title, or domain. Fall back to "Website".
+If REPORT_TIME_ZONE is missing, infer it from existing app, business, user, or
+deployment timezone settings. Fall back to "UTC".
+
+Protect public report endpoints with CRON_SECRET.
+Never expose Google private keys or Telegram bot tokens to frontend code.
+
+After implementation:
+- Run the project's tests/build/lint.
+- Update .env.example.
+- Explain whether GA4 tracking already existed or was added.
+- Explain which events are already tracked and which new events were added.
+- Explain which value is the GA4 measurement ID and which value is the GA4 property ID.
+```
+
 ## Environment Variables
 
 Copy `.env.example` and fill in your real values.
@@ -414,65 +473,6 @@ report, which uses the numeric `GA4_PROPERTY_ID`.
     }
   });
 </script>
-```
-
-## Integrating Into an Existing Site
-
-Package link: <https://www.npmjs.com/package/web-analytics-reporter>
-
-Use this prompt with an AI coding agent when adding the package to an unfamiliar
-website codebase:
-
-```text
-I want to integrate web-analytics-reporter into this website.
-
-First, inspect the codebase and determine whether GA4 tracking is already installed.
-Check for gtag.js, Google Tag Manager, Google Analytics scripts, a GA4 measurement ID
-like G-XXXXXXXXXX, existing analytics utilities, and existing event tracking calls.
-
-If GA4 tracking already exists:
-- Do not add duplicate GA4 scripts.
-- Keep the existing frontend tracking.
-- Audit existing events by searching for gtag("event"), dataLayer.push, analytics
-  wrappers, and click/form tracking utilities.
-- Add only the backend daily report integration with web-analytics-reporter.
-- Use GA4_PROPERTY_ID as the numeric GA4 property ID for reports.
-- Do not confuse GA4_PROPERTY_ID with the frontend measurement ID.
-
-If GA4 tracking does not exist:
-- Add minimal GA4 frontend tracking using the site's existing conventions.
-- Use the GA4 measurement ID only for frontend tracking.
-- Track only important product or business actions, not every click.
-- Then add the backend daily report integration.
-
-Install from npm:
-https://www.npmjs.com/package/web-analytics-reporter
-
-Required backend env vars:
-GA4_PROPERTY_ID=<numeric GA4 property id>
-GOOGLE_CLIENT_EMAIL=<service account email>
-GOOGLE_PRIVATE_KEY=<service account private key>
-TELEGRAM_BOT_TOKEN=<telegram bot token>
-TELEGRAM_CHAT_ID=<telegram chat id>
-
-Optional display env vars:
-REPORT_SITE_NAME=<site name>
-REPORT_TIME_ZONE=<IANA timezone>
-
-If REPORT_SITE_NAME is missing, infer a readable name from the app name, package
-name, site title, or domain. Fall back to "Website".
-If REPORT_TIME_ZONE is missing, infer it from existing app, business, user, or
-deployment timezone settings. Fall back to "UTC".
-
-Protect public report endpoints with CRON_SECRET.
-Never expose Google private keys or Telegram bot tokens to frontend code.
-
-After implementation:
-- Run the project's tests/build/lint.
-- Update .env.example.
-- Explain whether GA4 tracking already existed or was added.
-- Explain which events are already tracked and which new events were added.
-- Explain which value is the GA4 measurement ID and which value is the GA4 property ID.
 ```
 
 ## Choosing Events to Report

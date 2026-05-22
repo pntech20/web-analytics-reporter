@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 
 This project follows semantic versioning after public release.
 
+## 0.3.3
+
+- Move the existing-site integration prompt higher in the README for faster onboarding.
+
 ## 0.3.2
 
 - Add focused SEO guide pages for GA4 Telegram reports, Telegram bot setup, GitHub Actions, Vercel Cron, GA4 service account access, Node.js jobs, npm package setup, and multi-site reporting.
