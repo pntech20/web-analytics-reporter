@@ -42,6 +42,16 @@ img {
   max-width: 100%;
 }
 
+figure {
+  margin: 0;
+}
+
+a:focus-visible,
+button:focus-visible {
+  outline: 3px solid rgba(244, 183, 64, 0.85);
+  outline-offset: 3px;
+}
+
 .site-header {
   position: sticky;
   top: 0;
@@ -202,6 +212,8 @@ h1 {
 
 .hero-visual img {
   border-radius: 12px;
+  width: 100%;
+  height: auto;
 }
 
 .trust-row {
@@ -417,8 +429,8 @@ code {
 
   .nav-links {
     width: 100%;
-    overflow-x: auto;
-    padding-bottom: 2px;
+    flex-wrap: wrap;
+    gap: 14px 20px;
   }
 
   .hero,
@@ -429,10 +441,6 @@ code {
 
   .hero {
     min-height: auto;
-  }
-
-  .hero-visual {
-    order: -1;
   }
 
   .trust-row,
