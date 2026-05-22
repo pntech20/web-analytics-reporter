@@ -1,9 +1,12 @@
 {
   "name": "web-analytics-reporter",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "description": "Composable website analytics reports for GA4, Telegram, and serverless cron jobs.",
   "main": "index.js",
   "types": "index.d.ts",
+  "bin": {
+    "web-analytics-reporter": "./bin/web-analytics-reporter.js"
+  },
   "exports": {
     ".": {
       "types": "./index.d.ts",
@@ -41,6 +44,7 @@
     "*.js",
     "*.d.ts",
     ".env.example",
+    "bin",
     "README.md",
     "CHANGELOG.md",
     "LICENSE",
@@ -48,7 +52,7 @@
   ],
   "scripts": {
     "test": "node --test",
-    "check": "node --check *.js test/*.js examples/vercel/*.js",
+    "check": "node --check *.js bin/*.js test/*.js examples/vercel/*.js",
     "pack:check": "npm pack --dry-run"
   },
   "keywords": [

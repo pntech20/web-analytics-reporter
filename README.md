@@ -40,6 +40,26 @@ Requirements:
 
 ## Quick Start
 
+The fastest setup path is the CLI initializer:
+
+```sh
+npx web-analytics-reporter init
+```
+
+It creates:
+
+- `api/daily-summary.js`
+- `vercel.json`
+- `.env.example`
+
+Then fill the generated environment variables in Vercel and preview the report:
+
+```text
+https://example.com/api/daily-summary?secret=<CRON_SECRET>&dryRun=1
+```
+
+### Manual Setup
+
 Create `api/daily-summary.js` in a Vercel project:
 
 ```js
@@ -58,12 +78,12 @@ module.exports = createVercelDailySummaryHandler({
   destination: telegramDestination({
     botToken: process.env.TELEGRAM_BOT_TOKEN
   }),
-  timeZone: "UTC",
+  timeZone: process.env.REPORT_TIME_ZONE || "UTC",
   sites: [
     {
       id: "marketing",
-      name: "Marketing Site",
-      ga4PropertyId: "123456789",
+      name: process.env.REPORT_SITE_NAME || "Marketing Site",
+      ga4PropertyId: process.env.GA4_PROPERTY_ID,
       telegramChatId: process.env.TELEGRAM_CHAT_ID
     }
   ]
@@ -117,6 +137,12 @@ REPORT_TIME_ZONE=
 ```
 
 Never commit these values. Store them in your deployment platform.
+
+You can create the starter files at any time:
+
+```sh
+npx web-analytics-reporter init --site-name "Marketing Site" --time-zone UTC
+```
 
 ## GA4 Setup
 

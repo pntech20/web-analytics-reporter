@@ -13,12 +13,12 @@ module.exports = createVercelDailySummaryHandler({
   destination: telegramDestination({
     botToken: process.env.TELEGRAM_BOT_TOKEN
   }),
-  timeZone: "UTC",
+  timeZone: process.env.REPORT_TIME_ZONE || "UTC",
   sites: [
     {
       id: "example",
-      name: "Example Site",
-      ga4PropertyId: "123456789",
+      name: process.env.REPORT_SITE_NAME || "Example Site",
+      ga4PropertyId: process.env.GA4_PROPERTY_ID,
       telegramChatId: process.env.TELEGRAM_CHAT_ID
     }
   ]

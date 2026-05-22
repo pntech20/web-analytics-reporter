@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 
 This project follows semantic versioning after public release.
 
+## 0.2.0
+
+- Add `web-analytics-reporter init` CLI.
+- Generate a Vercel API route, `vercel.json` cron config, and `.env.example`.
+- Update Vercel examples to read GA4 property, site name, and time zone from environment variables.
+
 ## 0.1.1
 
 - Point package metadata to the public website.
