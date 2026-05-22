@@ -1,0 +1,79 @@
+{
+  "name": "web-analytics-reporter",
+  "version": "0.1.0",
+  "description": "Composable website analytics reports for GA4, Telegram, and serverless cron jobs.",
+  "main": "index.js",
+  "types": "index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./index.d.ts",
+      "require": "./index.js",
+      "default": "./index.js"
+    },
+    "./browser": {
+      "types": "./browser.d.ts",
+      "require": "./browser.js",
+      "default": "./browser.js"
+    },
+    "./core": {
+      "types": "./core.d.ts",
+      "require": "./core.js",
+      "default": "./core.js"
+    },
+    "./ga4": {
+      "types": "./ga4.d.ts",
+      "require": "./ga4.js",
+      "default": "./ga4.js"
+    },
+    "./telegram": {
+      "types": "./telegram.d.ts",
+      "require": "./telegram.js",
+      "default": "./telegram.js"
+    },
+    "./vercel": {
+      "types": "./vercel.d.ts",
+      "require": "./vercel.js",
+      "default": "./vercel.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "*.js",
+    "*.d.ts",
+    "README.md",
+    "CHANGELOG.md",
+    "LICENSE",
+    "examples"
+  ],
+  "scripts": {
+    "test": "node --test",
+    "check": "node --check *.js test/*.js examples/vercel/*.js",
+    "pack:check": "npm pack --dry-run"
+  },
+  "keywords": [
+    "analytics",
+    "ga4",
+    "google-analytics",
+    "telegram",
+    "reports",
+    "cron",
+    "serverless",
+    "web-analytics",
+    "vercel"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pntech20/web-analytics-reporter.git"
+  },
+  "bugs": {
+    "url": "https://github.com/pntech20/web-analytics-reporter/issues"
+  },
+  "homepage": "https://github.com/pntech20/web-analytics-reporter#readme",
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  }
+}

@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Web Analytics Reporter browser example</title>
+    <script src="../../browser.js"></script>
+    <script>
+      WebAnalyticsReporter.initGA4("G-XXXXXXXXXX");
+      WebAnalyticsReporter.installLinkEventTracking({
+        resolveEventName: function (context) {
+          if (context.url.pathname.indexOf("/downloads/") === 0) return "download_clicked";
+          if (context.url.pathname.indexOf("/guides/") === 0) return "guide_clicked";
+          return null;
+        }
+      });
+    </script>
+  </head>
+  <body>
+    <a href="/downloads/example.zip">Download</a>
+    <a href="/guides/example">Guide</a>
+  </body>
+</html>

@@ -1,0 +1,13 @@
+.DS_Store
+node_modules/
+coverage/
+*.log
+*.tgz
+
+.env
+.env.*
+!.env.example
+
+.vercel/
+.idea/
+.vscode/
