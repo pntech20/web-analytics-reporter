@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 
 This project follows semantic versioning after public release.
 
+## 0.3.5
+
+- Improve Telegram report readability with cleaner headings, singular/plural labels, friendly unknown source/location names, merged source rows, and clearer zero-action summaries.
+
 ## 0.3.4
 
 - Document `GA4_MEASUREMENT_ID` as the optional frontend-only measurement ID key.

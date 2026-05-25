@@ -41,9 +41,13 @@ export interface BuildDailySummaryMessageOptions {
 }
 
 export function buildDailySummaryMessage(options: BuildDailySummaryMessageOptions): string;
+export function countPhrase(value: number, singular: string, plural?: string): string;
 export function defaultEventLabels(): Record<string, string>;
+export function displayCountry(country?: string): string;
+export function displaySource(sourceMedium?: string): string;
 export function integer(value: number): string;
 export function listSection(items: string[], emptyText: string): string;
+export function metricSummary(metrics: Array<{ value: number; singular: string; plural?: string }>): string;
 export function pathLabel(path: string, maxLength?: number): string;
 export function percentChange(current: number, previous: number): string;
 export function yesterdayLabel(timeZone: string): string;
